@@ -118,6 +118,9 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
         @BindView(R.id.change)
         TextView change;
 
+        @BindView(R.id.stockerror)
+        TextView stockerror;
+
         StockViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -130,7 +133,6 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             cursor.moveToPosition(adapterPosition);
             int symbolColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_SYMBOL);
             clickHandler.onClick(cursor.getString(symbolColumn));
-
         }
 
 

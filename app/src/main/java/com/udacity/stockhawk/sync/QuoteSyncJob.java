@@ -70,15 +70,22 @@ public final class QuoteSyncJob {
 
             while (iterator.hasNext()) {
                 String symbol = iterator.next();
+                Stock stock = null;
+                StockQuote quote;
+                float price = 0.0f;
+                float change = 0.0f;
+                float percentChange = 0.0f;
+                try {
+                    stock = quotes.get(symbol);
+                    quote = stock.getQuote();
 
-
-                Stock stock = quotes.get(symbol);
-                StockQuote quote = stock.getQuote();
-
-                float price = quote.getPrice().floatValue();
-                float change = quote.getChange().floatValue();
-                float percentChange = quote.getChangeInPercent().floatValue();
-
+                    price = quote.getPrice().floatValue();
+                    change = quote.getChange().floatValue();
+                    percentChange = quote.getChangeInPercent().floatValue();
+                } catch (NullPointerException e) {
+                    Timber.w(e, "Skipping unknown stock %s", stock);
+                    continue;
+                }
                 // WARNING! Don't request historical data for a stock that doesn't exist!
                 // The request will hang forever X_x
                 List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);

@@ -22,5 +22,6 @@
 }
 
 -keep class com.github.mikephil.charting.** { *; }
+-keep class com.androidplot.** { *; }
 
 -dontwarn io.realm.**

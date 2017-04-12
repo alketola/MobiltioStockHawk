@@ -1,10 +1,13 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -13,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +34,8 @@ import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SwipeRefreshLayout.OnRefreshListener,
-        StockAdapter.StockAdapterOnClickHandler {
+        StockAdapter.StockAdapterOnClickHandler,
+        StockChartFragment.OnFragmentInteractionListener {
 
     private static final int STOCK_LOADER = 0;
     @SuppressWarnings("WeakerAccess")
@@ -44,9 +49,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     TextView error;
     private StockAdapter adapter;
 
+    private int mDisplayHeight;
+    private String mSymbol = "AAPL";
+
     @Override
     public void onClick(String symbol) {
         Timber.d("Symbol clicked: %s", symbol);
+        //AK: Ok here we can put the chart showing
+        // Intent with symbol extra string
+        mSymbol = symbol;
+        Intent showChart = new Intent(this, ChartActivity.class);
+
+        showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
+        showChart.putExtra(StockChartFragment.ARG_VIEW_HEIGHT, mDisplayHeight);
+
+        startActivity(showChart);
     }
 
     @Override
@@ -56,11 +73,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        mDisplayHeight = metrics.heightPixels;
+
         adapter = new StockAdapter(this, this);
-        stockRecyclerView.setAdapter(adapter);
-        stockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         swipeRefreshLayout.setOnRefreshListener(this);
+        stockRecyclerView.setAdapter(adapter);
+        stockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         swipeRefreshLayout.setRefreshing(true);
         onRefresh();
 
@@ -82,6 +103,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }).attachToRecyclerView(stockRecyclerView);
 
 
+        if (savedInstanceState != null) return;
+
+        setStockChartFragment(mSymbol, mDisplayHeight);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setStockChartFragment(mSymbol, mDisplayHeight);
     }
 
     private boolean networkUp() {
@@ -185,5 +217,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setStockChartFragment(String stock, int viewHeight) {
+        if (null != findViewById(R.id.chart_in_main_land)) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.chart_in_main_land, new StockChartFragment().newInstance(stock, Integer.toString(mDisplayHeight)));
+            ft.commit();
+        }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        Timber.d("onFragmentInteraction,    Uri: %s", uri);
     }
 }
