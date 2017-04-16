@@ -35,7 +35,16 @@
             android:id="@+id/chart_in_main_land"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/material_green_700" />
+            android:background="@color/material_green_700"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/activity_landscape_margin"
+                android:text="Please click a stock symbol to see its chart" />
+        </FrameLayout>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

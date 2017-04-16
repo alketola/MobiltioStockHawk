@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private StockAdapter adapter;
 
     private int mDisplayHeight;
-    private String mSymbol = "AAPL";
+    private String mSymbol = "";
 
     @Override
     public void onClick(String symbol) {
@@ -58,12 +58,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         //AK: Ok here we can put the chart showing
         // Intent with symbol extra string
         mSymbol = symbol;
-        Intent showChart = new Intent(this, ChartActivity.class);
 
-        showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
-        showChart.putExtra(StockChartFragment.ARG_VIEW_HEIGHT, mDisplayHeight);
-
-        startActivity(showChart);
+        showStockChart(mSymbol);
     }
 
     @Override
@@ -102,10 +98,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         }).attachToRecyclerView(stockRecyclerView);
 
-
         if (savedInstanceState != null) return;
-
-        setStockChartFragment(mSymbol, mDisplayHeight);
 
 
     }
@@ -113,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onResume() {
         super.onResume();
-        setStockChartFragment(mSymbol, mDisplayHeight);
     }
 
     private boolean networkUp() {
@@ -178,6 +170,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (data.getCount() != 0) {
             error.setVisibility(View.GONE);
         }
+        data.moveToFirst();
+        mSymbol = data.getString(Contract.Quote.POSITION_SYMBOL);
         adapter.setCursor(data);
     }
 
@@ -216,14 +210,32 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             adapter.notifyDataSetChanged();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    private void setStockChartFragment(String stock, int viewHeight) {
+    private void replaceStockFragment(String symbol) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.chart_in_main_land, new StockChartFragment().newInstance(symbol));
+        ft.commit();
+    }
+
+    private void ifLandPutStockChart(String symbol) {
         if (null != findViewById(R.id.chart_in_main_land)) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.chart_in_main_land, new StockChartFragment().newInstance(stock, Integer.toString(mDisplayHeight)));
-            ft.commit();
+            replaceStockFragment(symbol);
+        }
+    }
+
+    private void showStockChart(String symbol) {
+        if (null != findViewById(R.id.chart_in_main_land)) {
+            replaceStockFragment(symbol);
+        } else {
+            Intent showChart = new Intent(this, ChartActivity.class);
+            Timber.d("setStockChartFragment, starting ChartActivity");
+            showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
+            showChart.putExtra(StockChartFragment.ARG_VIEW_HEIGHT, mDisplayHeight);
+
+            startActivity(showChart);
         }
     }
 

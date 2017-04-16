@@ -54,7 +54,6 @@ public class StockChartFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mStockTicker;
-    private int mViewHeight;
 
     private OnFragmentInteractionListener mListener;
 
@@ -68,16 +67,14 @@ public class StockChartFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param stockTicker Parameter 1.
-     * @param viewHeight  Parameter 2.
      * @return A new instance of fragment StockChartFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static StockChartFragment newInstance(String stockTicker, String viewHeight) {
+
+    public static StockChartFragment newInstance(String stockTicker) {
         StockChartFragment fragment = new StockChartFragment();
         Timber.d("NewInstance stockTicker=%s", stockTicker);
         Bundle args = new Bundle();
         args.putString(ARG_STOCK_TICKER, stockTicker);
-        args.putString(ARG_VIEW_HEIGHT, viewHeight);
         fragment.setArguments(args);
         return fragment;
     }
@@ -87,7 +84,6 @@ public class StockChartFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mStockTicker = getArguments().getString(ARG_STOCK_TICKER);
-            mViewHeight = Integer.parseInt(getArguments().getString(ARG_VIEW_HEIGHT));
         }
     }
 
@@ -110,12 +106,14 @@ public class StockChartFragment extends Fragment {
         Uri queryUri = makeUriForStock(mStockTicker);
         Cursor cursor = getContext().getContentResolver()
                 .query(queryUri, null, null, null, null);
+
+
         String history = "";
         if (cursor != null) {
             cursor.moveToFirst();
             history = cursor.getString(cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY));
 
-            Timber.d("History = %s", history);
+            //Timber.d("History = %s", history);
             cursor.close();
         } else {
             Timber.d("No cursor.");
@@ -131,19 +129,19 @@ public class StockChartFragment extends Fragment {
         long now = System.currentTimeMillis();
         long threeMonthsAgo = now - (86400000L * 90);
         for (String valuepair : valuepairs) {
-            Timber.d("valuepair=%s", valuepair);
+            //Timber.d("valuepair=%s", valuepair);
             List<String> pair = Arrays.asList(valuepair.split(","));
 
             float time_ms = Float.valueOf(pair.get(0));
-            Timber.d("time_ms=%f", time_ms);
+            //Timber.d("time_ms=%f", time_ms);
             if (time_ms > threeMonthsAgo) {
                 float quote_dollars = Float.valueOf(pair.get(1));
-                Timber.d("quote_dollars=%4.4f", quote_dollars);
+                //Timber.d("quote_dollars=%4.4f", quote_dollars);
                 entries.add(new Entry(time_ms, quote_dollars));
                 entryCount++;
             }
         }
-        Timber.d("Chart data entry count = %d", entryCount);
+        Timber.d("Processed history data; entry count = %d", entryCount);
         Collections.sort(entries, new EntryXComparator());
 
         LineDataSet dataSet = new LineDataSet(entries, mStockTicker);

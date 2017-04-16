@@ -9,8 +9,8 @@
     <string name="pref_display_mode_key">displayMode</string>
     <string name="pref_display_mode_default">@string/pref_display_mode_percentage_key</string>
 
-    <string name="pref_display_mode_absolute_key">absolute</string>
-    <string name="pref_display_mode_percentage_key">percentage</string>
+    <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
+    <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
 
     <string name="default_stocks_yahoo">YHOO</string>
     <string name="default_stocks_apple">AAPL</string>
@@ -33,7 +33,9 @@
     <string name="toast_no_connectivity">Will refresh when network available.</string>
     <string name="unavailable">UNAVAILABLE</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pref_widget_stock_key">pref_widget_stock_key</string>
+    <string name="appwidget_stock_error">Stock not configured</string>
+    <string name="widget_config">Select Stock to show in Widget</string>
+    <string name="accept_widget">Accept</string>
 
 </resources>

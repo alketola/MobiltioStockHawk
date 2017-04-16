@@ -7,5 +7,7 @@
     <color name="material_blue_500">#2196F3</color>
     <color name="material_red_700">#D50000</color>
     <color name="material_green_700">#00C853</color>
+    <color name="my_semi_opaque_grey">#A0001122</color>
+    <color name="my_semi_opaque_dark_grey">#B0001122</color>
 
 </resources>

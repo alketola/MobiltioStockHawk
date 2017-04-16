@@ -20,4 +20,21 @@
         <item name="android:textSize">25sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
+
+    <style name="WidgetPercentChangeTextStyle" parent="PercentChangeTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:layout_margin">@dimen/widget_margin</item>
+    </style>
+
+    <style name="WidgetBidPriceTextStyle" parent="BidPriceTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+    <style name="WidgetStockSymbolTextStyle" parent="StockSymbolTextStyle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
+
 </resources>
