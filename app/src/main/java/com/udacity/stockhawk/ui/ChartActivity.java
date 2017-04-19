@@ -5,12 +5,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.udacity.stockhawk.R;
 
 import timber.log.Timber;
 
 public class ChartActivity extends AppCompatActivity implements StockChartFragment.OnFragmentInteractionListener {
+
+    String mSymbol = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +28,14 @@ public class ChartActivity extends AppCompatActivity implements StockChartFragme
 
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
-            String stock = bundle.getString(StockChartFragment.ARG_STOCK_TICKER);
+            mSymbol = bundle.getString(StockChartFragment.ARG_STOCK_TICKER);
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.activity_chart_frame, new StockChartFragment().newInstance(stock));
+            ft.add(R.id.activity_chart_frame, new StockChartFragment().newInstance(mSymbol));
             ft.commit();
         }
+
+
     }
 
     @Override
@@ -47,4 +53,23 @@ public class ChartActivity extends AppCompatActivity implements StockChartFragme
     protected void onResume() {
         super.onResume();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.chart_activity_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_goto_statistics) {
+            UiUtil.showStatsDisplay(ChartActivity.this, mSymbol);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 }

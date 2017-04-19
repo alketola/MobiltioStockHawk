@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">8dp</dimen>
     <dimen name="activity_landscape_margin">8dp</dimen>
     <dimen name="widget_padding">8dp</dimen>
     <dimen name="widget_margin">8dp</dimen>
@@ -12,7 +12,15 @@
 Refer to App Widget Documentation for margin information
 http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     -->
-    <dimen name="widget_symbol_width">96dp</dimen>
-    <dimen name="widget_price_width">72dp</dimen>
-    <dimen name="widget_change_width">72dp</dimen>
+    <dimen name="widget_symbol_width">100sp</dimen>
+    <dimen name="widget_price_width">100sp</dimen>
+    <dimen name="widget_change_width">80sp</dimen>
+    <dimen name="chart_padding">4dp</dimen>
+    <!-- Small screen -->
+    <dimen name="layout_margin_small_screen">4dp</dimen>
+    <dimen name="list_item_height_small_screen">36dp</dimen>
+    <dimen name="list_symbol_width_small_screen">50dp</dimen>
+    <dimen name="list_price_width_small_screen">50dp</dimen>
+    <dimen name="list_change_width_small_screen">70dp</dimen>
+
 </resources>

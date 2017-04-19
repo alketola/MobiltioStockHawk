@@ -10,9 +10,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -49,8 +53,7 @@ public class StockChartFragment extends Fragment {
 
     // COMPLETED: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public static final String ARG_STOCK_TICKER = "stockTicker";
-    public static final String ARG_VIEW_HEIGHT = "viewHeight";
+    public static final String ARG_STOCK_TICKER = "com.udacity.stockhawk.argument.stocksymbol";
 
     // TODO: Rename and change types of parameters
     private String mStockTicker;
@@ -113,7 +116,7 @@ public class StockChartFragment extends Fragment {
             cursor.moveToFirst();
             history = cursor.getString(cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY));
 
-            //Timber.d("History = %s", history);
+            Timber.d("History = %s", history);
             cursor.close();
         } else {
             Timber.d("No cursor.");
@@ -131,24 +134,38 @@ public class StockChartFragment extends Fragment {
         for (String valuepair : valuepairs) {
             //Timber.d("valuepair=%s", valuepair);
             List<String> pair = Arrays.asList(valuepair.split(","));
+            float time_ms;
+            float quote_dollars;
+            try {
+                time_ms = Float.valueOf(pair.get(0)); // Had crashed here!
 
-            float time_ms = Float.valueOf(pair.get(0));
-            //Timber.d("time_ms=%f", time_ms);
-            if (time_ms > threeMonthsAgo) {
-                float quote_dollars = Float.valueOf(pair.get(1));
-                //Timber.d("quote_dollars=%4.4f", quote_dollars);
-                entries.add(new Entry(time_ms, quote_dollars));
-                entryCount++;
+                //Timber.d("time_ms=%f", time_ms);
+                if (time_ms > threeMonthsAgo) {
+                    quote_dollars = Float.valueOf(pair.get(1));
+                    //Timber.d("quote_dollars=%4.4f", quote_dollars);
+                    entries.add(new Entry(time_ms, quote_dollars));
+                    entryCount++;
+                }
+            } catch (NumberFormatException e) {
+                continue;
             }
         }
         Timber.d("Processed history data; entry count = %d", entryCount);
+        if (entryCount < 2) {
+            Timber.e("Insufficient chart data available: %d entries", entryCount);
+            TextView errorView = new TextView(getActivity());
+            errorView.setText("ERROR. CHART DATA NOT FOUND");
+            return (View) errorView;
+        }
         Collections.sort(entries, new EntryXComparator());
 
         LineDataSet dataSet = new LineDataSet(entries, mStockTicker);
-        dataSet.setCircleColor(Color.RED);
+        dataSet.setDrawCircles(false);
+        dataSet.setDrawCircleHole(false);
+        dataSet.setDrawValues(false);
         dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
         dataSet.setColor(Color.DKGRAY);
-        dataSet.setHighLightColor(Color.CYAN);
+        dataSet.setHighLightColor(Color.RED);
         dataSet.setLineWidth(2.0f);
         dataSet.setVisible(true);
 
@@ -161,6 +178,10 @@ public class StockChartFragment extends Fragment {
         leftAxis.setTextSize(12f);
         leftAxis.setAxisMaximum(dataSet.getYMax());
         leftAxis.setAxisMinimum(dataSet.getYMin());
+
+        mLineChart.getDescription().setText("");
+        mLineChart.getLegend().setEnabled(true);
+        mLineChart.setDrawMarkers(false);
 
         List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(dataSet);

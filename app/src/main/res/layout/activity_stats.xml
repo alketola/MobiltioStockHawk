@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_activity_stats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ap_charcoal"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:visibility="invisible"
+            tools:context="com.udacity.stockhawk.ui.StatsActivity">
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_currency" />
+
+                <TextView
+                    android:id="@+id/stats_currency"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="5.95" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_ask_price_title_text" />
+
+                <TextView
+                    android:id="@+id/stats_ask_price"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="5.95" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_bid_price_title_text" />
+
+                <TextView
+                    android:id="@+id/stats_bid_price"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="5.95" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="One year target price" />
+
+                <TextView
+                    android:id="@+id/tv_1y_target_price"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_change_today" />
+
+                <TextView
+                    android:id="@+id/tv_change"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_change_50d_percent" />
+
+                <TextView
+                    android:id="@+id/tv_change_50d_percent"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_change_200d_percent" />
+
+                <TextView
+                    android:id="@+id/tv_change_200d_percent"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_pe_title_text" />
+
+                <TextView
+                    android:id="@+id/stats_pe"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="5.95" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_pb_title_text" />
+
+                <TextView
+                    android:id="@+id/stats_pb"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="22.2" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_ps_title_text" />
+
+                <TextView
+                    android:id="@+id/stats_ps"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="30.6" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_title_bvps" />
+
+                <TextView
+                    android:id="@+id/tv_bvps"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_eps_title_text" />
+
+                <TextView
+                    android:id="@+id/stats_eps"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    tools:text="25.1" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_epstarget_title_text" />
+
+                <TextView
+                    android:id="@+id/stats_epstarget"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    tools:text="22.3" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EPS estimate current year" />
+
+                <TextView
+                    android:id="@+id/tv_est_curr_y"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EPS estimate next quarter" />
+
+                <TextView
+                    android:id="@+id/tv_est_next_q"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PEG" />
+
+                <TextView
+                    android:id="@+id/tv_peg"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ROE" />
+
+                <TextView
+                    android:id="@+id/tv_roe"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shares float" />
+
+                <TextView
+                    android:id="@+id/tv_shares_float"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shares outstanding" />
+
+                <TextView
+                    android:id="@+id/tv_shares_outstanding"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shares owned" />
+
+                <TextView
+                    android:id="@+id/tv_shares_owned"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Short ratio" />
+
+                <TextView
+                    android:id="@+id/tv_short_ratio"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Revenue" />
+
+                <TextView
+                    android:id="@+id/tv_revenue"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Market capitalization" />
+
+                <TextView
+                    android:id="@+id/tv_market_cap"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stats_ebitda_title_text" />
+
+                <TextView
+                    android:id="@+id/stats_ebitda"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    tools:text="$3.33" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_activity_stats_error"
+        style="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription=""
+        android:text="@string/error_invalid_or_unavailable_statistical_data"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:visibility="invisible" />
+</FrameLayout>

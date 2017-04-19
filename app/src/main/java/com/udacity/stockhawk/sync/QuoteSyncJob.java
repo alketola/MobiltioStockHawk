@@ -13,6 +13,7 @@ import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -36,6 +37,7 @@ public final class QuoteSyncJob {
     private static final int INITIAL_BACKOFF = 10000;
     private static final int PERIODIC_ID = 1;
     private static final int YEARS_OF_HISTORY = 2;
+    private static final int MONTHS_OF_HISTORY = -3;
 
     private QuoteSyncJob() {
     }
@@ -46,7 +48,7 @@ public final class QuoteSyncJob {
 
         Calendar from = Calendar.getInstance();
         Calendar to = Calendar.getInstance();
-        from.add(Calendar.YEAR, -YEARS_OF_HISTORY);
+        from.add(Calendar.MONTH, MONTHS_OF_HISTORY);
 
         try {
 
@@ -61,7 +63,8 @@ public final class QuoteSyncJob {
                 return;
             }
 
-            Map<String, Stock> quotes = YahooFinance.get(stockArray);
+            Map<String, Stock> quotes = YahooFinance.get(stockArray, false); // includeHistorical = true
+
             Iterator<String> iterator = stockCopy.iterator();
 
             Timber.d(quotes.toString());
@@ -83,16 +86,23 @@ public final class QuoteSyncJob {
                     change = quote.getChange().floatValue();
                     percentChange = quote.getChangeInPercent().floatValue();
                 } catch (NullPointerException e) {
-                    Timber.w(e, "Skipping unknown stock %s", stock);
+                    Timber.d(e, "Skipping unknown stock %s", stock);
                     continue;
                 }
+
                 // WARNING! Don't request historical data for a stock that doesn't exist!
                 // The request will hang forever X_x
-                List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
 
+                List<HistoricalQuote> history = stock.getHistory(from, to, Interval.DAILY);
+                if (history != null) {
+                    Timber.d("HISTORY = %s", history);
+                } else {
+                    Timber.d("HISTORY = NULL");
+                }
                 StringBuilder historyBuilder = new StringBuilder();
 
                 for (HistoricalQuote it : history) {
+                    Timber.d("history = %s", it.toString());
                     historyBuilder.append(it.getDate().getTimeInMillis());
                     historyBuilder.append(", ");
                     historyBuilder.append(it.getClose());

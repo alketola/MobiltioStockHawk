@@ -37,5 +37,27 @@
     <string name="appwidget_stock_error">Stock not configured</string>
     <string name="widget_config">Select Stock to show in Widget</string>
     <string name="accept_widget">Accept</string>
+    <string name="stats_title">Statistics</string>
+    <string name="stats_eps_title_text">EPS (Earnings Per Share)</string>
+    <string name="stats_epstarget_title_text">EPS target (next year)</string>
+    <string name="stats_ebitda_title_text">EBITDA</string>
+    <string name="stats_pe_title_text">P/E (Price per Earnings)</string>
+    <string name="stats_pb_title_text">P/B (Price per bookvalue)</string>
+    <string name="stats_ps_title_text">P/S (price per sales)</string>
+    <string name="statistics_menu_item">Statistics</string>
+    <string name="stocksymbol_extra_key">com.udacity.stockhawk.argument.stocksymbol</string>
+    <string name="error_invalid_or_unavailable_statistical_data">ERROR. INVALID OR UNAVAILABLE STATISTICAL DATA.</string>
+    <string name="value_not_available">N/A</string>
+    <string name="m_letter_for_million_values">M</string>
+    <string name="content_desc_change_of_stock_value">Change of stock value</string>
+    <string name="content_desc_current_value">Current value of stock</string>
+    <string name="content_desc_stock_symbol">Stock symbol</string>
+    <string name="stat_title_bvps">BVPS</string>
+    <string name="stats_ask_price_title_text">Ask price</string>
+    <string name="stats_bid_price_title_text">Bid price</string>
+    <string name="stats_change_today">Change today</string>
+    <string name="stats_change_50d_percent">Change in 50 days average</string>
+    <string name="stats_change_200d_percent">Change in 200 days average</string>
+    <string name="stats_currency">Currency</string>
 
 </resources>

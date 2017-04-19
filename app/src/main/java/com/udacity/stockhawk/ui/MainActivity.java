@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -31,6 +32,8 @@ import com.udacity.stockhawk.sync.QuoteSyncJob;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
+
+import static com.udacity.stockhawk.R.id.action_goto_statistics;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SwipeRefreshLayout.OnRefreshListener,
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        System.setProperty("yahoofinance.baseurl.histquotes", "https://ichart.yahoo.com/table.csv");
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -209,31 +212,34 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             setDisplayModeMenuItemIcon(item);
             adapter.notifyDataSetChanged();
             return true;
+        } else if (id == R.id.action_goto_statistics) {
+            showStatsDisplay(this, mSymbol);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void replaceStockFragment(String symbol) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.chart_in_main_land, new StockChartFragment().newInstance(symbol));
+
+    private static void replaceStockFragment(FragmentActivity activity, String symbol) {
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fl_chart_in_main_land, new StockChartFragment().newInstance(symbol));
         ft.commit();
     }
 
     private void ifLandPutStockChart(String symbol) {
-        if (null != findViewById(R.id.chart_in_main_land)) {
-            replaceStockFragment(symbol);
+        if (null != findViewById(R.id.fl_chart_in_main_land)) {
+            replaceStockFragment(this, symbol);
         }
     }
 
-    private void showStockChart(String symbol) {
-        if (null != findViewById(R.id.chart_in_main_land)) {
-            replaceStockFragment(symbol);
+    public void showStockChart(String symbol) {
+        if (null != findViewById(R.id.fl_chart_in_main_land)) {
+            replaceStockFragment(this, symbol);
         } else {
             Intent showChart = new Intent(this, ChartActivity.class);
             Timber.d("setStockChartFragment, starting ChartActivity");
             showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
-            showChart.putExtra(StockChartFragment.ARG_VIEW_HEIGHT, mDisplayHeight);
 
             startActivity(showChart);
         }
@@ -242,5 +248,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onFragmentInteraction(Uri uri) {
         Timber.d("onFragmentInteraction,    Uri: %s", uri);
+    }
+
+    private void showStatsDisplay(Context context, String symbol) {
+
+        Intent gotoStats = new Intent(context, com.udacity.stockhawk.ui.StatsActivity.class);
+        gotoStats.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
+
+        startActivity(gotoStats);
+        Timber.d("Started Stats Activity from %s", context.toString());
     }
 }

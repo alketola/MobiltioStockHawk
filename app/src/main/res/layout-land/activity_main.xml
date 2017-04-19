@@ -1,57 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.udacity.stockhawk.ui.MainActivity">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_main_land"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
 
         <FrameLayout
-            android:layout_width="320dp"
-            android:layout_height="wrap_content">
+            android:id="@+id/fl_stocks_main_land"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="0dp"
+            android:paddingRight="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/fl_chart_container"
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@+id/swipe_refresh"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+
+                android:layout_margin="@dimen/layout_margin_small_screen"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+
+                android:background="@color/my_semi_opaque_grey">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingLeft="@dimen/activity_landscape_margin"
-                    android:paddingRight="@dimen/activity_landscape_margin" />
-
+                    android:layout_marginLeft="@dimen/layout_margin_small_screen"
+                    android:layout_marginStart="@dimen/layout_margin_small_screen"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="0dp"
+                    android:paddingLeft="@dimen/layout_margin_small_screen"
+                    android:paddingRight="0dp"
+                    android:paddingEnd="0dp" />
             </android.support.v4.widget.SwipeRefreshLayout>
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:visibility="gone"
+                tools:text="Stock error message" />
+
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/chart_in_main_land"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/material_green_700"
-            android:layout_gravity="center_vertical">
+            android:id="@+id/fl_chart_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/fl_stocks_main_land"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_min="100dp">
 
             <TextView
+                android:id="@+id/activity_main_chart_error"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="@dimen/activity_landscape_margin"
-                android:text="Please click a stock symbol to see its chart" />
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/layout_margin_small_screen"
+                android:padding="@dimen/layout_margin_small_screen"
+                android:text="Please click a stock symbol to see its chart"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <FrameLayout
+                android:id="@+id/fl_chart_in_main_land"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp" />
+
         </FrameLayout>
-    </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
+        android:layout_gravity="bottom|right|end"
         android:layout_margin="16dp"
         android:onClick="button"
         android:src="@drawable/fab_plus"
@@ -61,12 +111,4 @@
         app:fabSize="normal"
         app:pressedTranslationZ="12dp" />
 
-    <TextView
-        android:id="@+id/error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:visibility="gone"
-        tools:text="Error message" />
-</merge>
+</FrameLayout>

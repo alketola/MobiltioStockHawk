@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height_small_screen"
+    android:layout_margin="0dp"
+    android:background="@color/ap_charcoal"
+    android:elevation="4dp"
+    android:gravity="start|left|center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_gravity="left|start|center_vertical"
+        android:layout_margin="0dp"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:background="?selectableItemBackgroundBorderless">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|start|center_vertical">
+
+            <TextView
+                android:id="@+id/symbol"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="@dimen/list_symbol_width_small_screen"
+                android:layout_height="wrap_content"
+                android:gravity="left|start|center_vertical"
+                android:layout_margin="@dimen/layout_margin_small_screen"
+                tools:text="GOOG"
+                android:contentDescription="@string/content_desc_stock_symbol" />
+
+            <TextView
+                android:id="@+id/price"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="@dimen/list_price_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|start|center_vertical"
+                android:layout_margin="@dimen/layout_margin_small_screen"
+                android:visibility="visible"
+                tools:text="1000.00"
+                android:contentDescription="@string/content_desc_current_value" />
+
+
+            <TextView
+                android:id="@+id/change"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="@dimen/list_change_width_small_screen"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|start|center_vertical"
+                android:background="@drawable/percent_change_pill_green"
+                android:layout_margin="@dimen/layout_margin_small_screen"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:visibility="visible"
+                tools:text="+10.23%"
+                android:contentDescription="@string/content_desc_change_of_stock_value" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/stockerror"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/ap_transparent"
+            android:gravity="center"
+            android:paddingLeft="@dimen/layout_margin_small_screen"
+            android:paddingRight="@dimen/layout_margin_small_screen"
+            android:text="@string/unavailable"
+            android:textColor="@color/material_red_700"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+</LinearLayout>

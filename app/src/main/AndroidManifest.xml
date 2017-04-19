@@ -18,10 +18,17 @@
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.ChartActivity"
+            android:label="Stock Chart" />
+
+        <activity
+            android:name=".ui.StatsActivity"
+            android:label="Statistics"></activity>
+
 
         <service
             android:name=".sync.QuoteIntentService"
@@ -37,8 +44,6 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
-        <activity android:name=".ui.ChartActivity" />
 
         <receiver android:name=".widget.StockHawkAppWidget">
             <intent-filter>

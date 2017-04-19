@@ -8,5 +8,9 @@
         android:orderInCategory="99"
         android:title="@string/action_change_units"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_goto_statistics"
+        android:title="@string/statistics_menu_item"
+        app:showAsAction="ifRoom" />
 
 </menu>
