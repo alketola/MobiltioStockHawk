@@ -29,6 +29,7 @@ public class ChartActivity extends AppCompatActivity implements StockChartFragme
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             mSymbol = bundle.getString(StockChartFragment.ARG_STOCK_TICKER);
+            Timber.d("onCreate received request for symbol: %s", mSymbol);
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.add(R.id.activity_chart_frame, new StockChartFragment().newInstance(mSymbol));

@@ -32,10 +32,14 @@ public class ConfigStockListAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView tv = (TextView) view.findViewById(R.id.list_item_stock_config);
-
+        tv.setSelected(false);
         String stock_symbol = cursor.getString(Contract.Quote.POSITION_SYMBOL);
         tv.setText(stock_symbol);
 
     }
 
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        return super.getView(position, convertView, parent);
+    }
 }

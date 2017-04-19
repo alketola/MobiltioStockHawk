@@ -3,18 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/ap_charcoal"
     android:padding="16dp">
 
     <TextView
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/widget_config" />
 
     <ListView
+        style="@style/PreferenceFragmentList"
         android:id="@+id/list_view_stocks_config"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:listSelector="@color/my_widget_config_highlight" />
 
     <Button
         android:id="@+id/add_button"

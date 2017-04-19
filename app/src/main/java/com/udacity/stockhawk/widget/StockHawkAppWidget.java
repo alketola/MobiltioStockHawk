@@ -41,13 +41,14 @@ public class StockHawkAppWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.stock_hawk_app_widget);
         String stockSymbol = loadWidgetStockPref(context, appWidgetId);
-        Timber.d("updateAppWidget(appWidgetId=%d); stockSymbol=%s", appWidgetId, stockSymbol);
+
         Uri queryUri = Contract.Quote.makeUriForStock(stockSymbol);
         Cursor cursor = context.getContentResolver()
                 .query(queryUri, null, null, null, null);
         if (cursor.getCount() < 1) return;
         cursor.moveToFirst();
         String symbol = cursor.getString(Contract.Quote.POSITION_SYMBOL);
+
         float rawAbsoluteChange = cursor.getFloat(Contract.Quote.POSITION_ABSOLUTE_CHANGE);
         float percentageChange = cursor.getFloat(Contract.Quote.POSITION_PERCENTAGE_CHANGE);
 
@@ -79,28 +80,6 @@ public class StockHawkAppWidget extends AppWidgetProvider {
         } else {
             views.setImageViewResource(R.id.widget_percentage_background, R.drawable.percent_change_pill_red);
         }
-        boolean CLICK_REFRESHES = false;
-        if (CLICK_REFRESHES) {
-            Intent updateIntent = new Intent();
-            updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-            int[] ids = AppWidgetManager.getInstance(context)
-                    .getAppWidgetIds(new ComponentName(context, StockHawkAppWidget.class));
-            updateIntent.putExtra(StockHawkAppWidget.WIDGET_IDS_KEY, ids);
-            updateIntent.putExtra(WIDGET_DATA_KEY, symbol);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    context, 0, updateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            views.setOnClickPendingIntent(R.id.widget_frame_layout, pendingIntent);
-        } else if (false) {
-            Intent showChart = new Intent(context, ChartActivity.class);
-
-            showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    context, 0, showChart, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            views.setOnClickPendingIntent(R.id.widget_change, pendingIntent);
-
-        }
 
         try {
             Intent intent = new Intent("android.intent.action.MAIN");
@@ -108,7 +87,7 @@ public class StockHawkAppWidget extends AppWidgetProvider {
 
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             intent.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
-            Timber.d("context.getPackageName()=%s", context.getPackageName());
+
             intent.setComponent(new ComponentName(context.getPackageName(),
                     "com.udacity.stockhawk.ui.ChartActivity"));
             PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -163,6 +142,7 @@ public class StockHawkAppWidget extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         if (intent.hasExtra(WIDGET_IDS_KEY)) {
             int[] ids = intent.getExtras().getIntArray(WIDGET_IDS_KEY);
+            Timber.d("Widget onReceive ids=%s", (String) ids.toString());
             if (intent.hasExtra(WIDGET_DATA_KEY)) {
                 String data = intent.getExtras().getString(WIDGET_DATA_KEY);
                 Timber.d("Widget onReceive data=%s", (String) data);

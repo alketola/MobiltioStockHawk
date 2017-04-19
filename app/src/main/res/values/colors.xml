@@ -9,5 +9,8 @@
     <color name="material_green_700">#00C853</color>
     <color name="my_semi_opaque_grey">#B0334455</color>
     <color name="my_semi_opaque_dark_grey">#B0001122</color>
+    <color name="my_widget_config_background">#00111111</color>
+    <color name="my_widget_config_text">#FFFFFFFF</color>
+    <color name="my_widget_config_highlight">#FFC01111</color>
 
 </resources>

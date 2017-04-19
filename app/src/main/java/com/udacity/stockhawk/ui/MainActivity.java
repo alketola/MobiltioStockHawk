@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
@@ -17,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,8 +35,6 @@ import com.udacity.stockhawk.sync.QuoteSyncJob;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
-
-import static com.udacity.stockhawk.R.id.action_goto_statistics;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>,
         SwipeRefreshLayout.OnRefreshListener,
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.setProperty("yahoofinance.baseurl.histquotes", "https://ichart.yahoo.com/table.csv");
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -103,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         if (savedInstanceState != null) return;
 
-
     }
 
     @Override
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             swipeRefreshLayout.setRefreshing(false);
             error.setText(getString(R.string.error_no_stocks));
             error.setVisibility(View.VISIBLE);
+            ifLandPutStockChart(mSymbol);
         } else {
             error.setVisibility(View.GONE);
         }
@@ -158,6 +159,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
+    /* This task is here just because one can't swap a fragment in onLoadFinish
+     * Better to have a new little thread, which works.
+     *
+     * module variable reference: mSymbol
+     */
+    private class ChartChangeTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            ifLandPutStockChart(mSymbol);
+            return null;
+        }
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(this,
@@ -175,8 +190,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         data.moveToFirst();
         mSymbol = data.getString(Contract.Quote.POSITION_SYMBOL);
+        Timber.d("Load finished. mSymbol=%s", mSymbol);
         adapter.setCursor(data);
+        new ChartChangeTask().execute(); //execute ifLandPutStockChart(mSymbol); on thread
+
     }
+
 
 
     @Override
@@ -184,7 +203,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         swipeRefreshLayout.setRefreshing(false);
         adapter.setCursor(null);
     }
-
 
     private void setDisplayModeMenuItemIcon(MenuItem item) {
         if (PrefUtils.getDisplayMode(this)
@@ -213,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             adapter.notifyDataSetChanged();
             return true;
         } else if (id == R.id.action_goto_statistics) {
-            showStatsDisplay(this, mSymbol);
+            showStats(this, mSymbol);
             return true;
         }
 
@@ -221,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
 
-    private static void replaceStockFragment(FragmentActivity activity, String symbol) {
+    private static void replaceChartFragment(FragmentActivity activity, String symbol) {
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fl_chart_in_main_land, new StockChartFragment().newInstance(symbol));
         ft.commit();
@@ -229,13 +247,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private void ifLandPutStockChart(String symbol) {
         if (null != findViewById(R.id.fl_chart_in_main_land)) {
-            replaceStockFragment(this, symbol);
+            replaceChartFragment(this, symbol);
         }
     }
 
-    public void showStockChart(String symbol) {
+    private void showStockChart(String symbol) {
         if (null != findViewById(R.id.fl_chart_in_main_land)) {
-            replaceStockFragment(this, symbol);
+            replaceChartFragment(this, symbol);
         } else {
             Intent showChart = new Intent(this, ChartActivity.class);
             Timber.d("setStockChartFragment, starting ChartActivity");
@@ -250,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Timber.d("onFragmentInteraction,    Uri: %s", uri);
     }
 
-    private void showStatsDisplay(Context context, String symbol) {
+    private void showStats(Context context, String symbol) {
 
         Intent gotoStats = new Intent(context, com.udacity.stockhawk.ui.StatsActivity.class);
         gotoStats.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);

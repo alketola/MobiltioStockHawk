@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceScreen;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
+
+import org.w3c.dom.Text;
 
 import timber.log.Timber;
 
@@ -49,6 +53,7 @@ public class StockHawkAppWidgetConfigureActivity extends AppCompatActivity {
             finish();
         }
     };
+
 
     public StockHawkAppWidgetConfigureActivity() {
         super();
@@ -89,7 +94,7 @@ public class StockHawkAppWidgetConfigureActivity extends AppCompatActivity {
         setResult(RESULT_CANCELED);
 
         setContentView(R.layout.stock_hawk_app_widget_configure);
-        //mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
+
         findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
 
         // Find the widget id from the intent.
@@ -122,7 +127,8 @@ public class StockHawkAppWidgetConfigureActivity extends AppCompatActivity {
 
         ConfigStockListAdapter adapter =
                 new ConfigStockListAdapter(context, mCursor, false);
-        ListView listView = (ListView) findViewById(R.id.list_view_stocks_config);
+        final ListView listView = (ListView) findViewById(R.id.list_view_stocks_config);
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -131,7 +137,7 @@ public class StockHawkAppWidgetConfigureActivity extends AppCompatActivity {
                 String symbol = tv.getText().toString();
                 mSelectedStock = symbol;
                 Timber.d("mSelectedStock=%s", mSelectedStock);
-                tv.setBackgroundColor(0xFF00D0D0);
+                listView.setSelected(true);
             }
         });
     }
