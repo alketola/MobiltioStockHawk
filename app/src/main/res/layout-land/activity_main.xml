@@ -85,7 +85,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/layout_margin_small_screen"
                 android:padding="@dimen/layout_margin_small_screen"
-                android:text="Please click a stock symbol to see its chart"
+                android:text="@string/no_chart_stock_not_selected"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 

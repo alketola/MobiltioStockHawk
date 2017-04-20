@@ -48,7 +48,7 @@
     <string name="stocksymbol_extra_key" translatable="false">com.udacity.stockhawk.argument.stocksymbol</string>
     <string name="error_invalid_or_unavailable_statistical_data">ERROR. INVALID OR UNAVAILABLE STATISTICAL DATA.</string>
     <string name="value_not_available">N/A</string>
-    <string name="m_letter_for_million_values" translatable="false">M</string>
+    <string name="m_letter_for_million_values">M</string>
     <string name="content_desc_change_of_stock_value">Change of stock value</string>
     <string name="content_desc_current_value">Current value of stock</string>
     <string name="content_desc_stock_symbol">Stock symbol</string>
@@ -80,5 +80,7 @@
     <string name="content_desc_main_menu_currency">Show change in currency</string>
     <string name="content_desc_stock_graph">Stock value evolution by time graph.</string>
     <string name="list_of_stocks">list of stocks</string>
+    <string name="no_chart_stock_not_selected">Chart is not available as no stock is selected.</string>
+    <string name="fragment_chart_data_not_found">ERROR. DATAA EI LÖYTYNYT.</string>
 
 </resources>

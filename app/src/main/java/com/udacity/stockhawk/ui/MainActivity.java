@@ -189,10 +189,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             error.setVisibility(View.GONE);
         }
         data.moveToFirst();
-        mSymbol = data.getString(Contract.Quote.POSITION_SYMBOL);
-        Timber.d("Load finished. mSymbol=%s", mSymbol);
-        adapter.setCursor(data);
-        new ChartChangeTask().execute(); //execute ifLandPutStockChart(mSymbol); on thread
+        int count = data.getCount();
+        if (count > 0) {
+            mSymbol = data.getString(Contract.Quote.POSITION_SYMBOL);
+            Timber.d("Load finished. mSymbol=%s", mSymbol);
+            adapter.setCursor(data);
+            new ChartChangeTask().execute(); //execute ifLandPutStockChart(mSymbol); on thread
+        } else {
+            Timber.v("Cursor with no data");
+        }
 
     }
 

@@ -125,8 +125,13 @@ public class StockChartFragment extends Fragment {
         List<String> valuepairs = Arrays.asList(history.split("\n"));
         LineChart mLineChart;
         mLineChart = (LineChart) v.findViewById(R.id.chart_view);
-        mLineChart.setScaleEnabled(true);
+        mLineChart.setHorizontalScrollBarEnabled(true);
+        mLineChart.setScaleXEnabled(true);
+        mLineChart.setScaleYEnabled(false);
+        mLineChart.setDragEnabled(true);
         mLineChart.setDoubleTapToZoomEnabled(false);
+        mLineChart.setPinchZoom(false);
+
 
         List<Entry> entries = new ArrayList<Entry>();
         int entryCount = 0;
@@ -141,12 +146,12 @@ public class StockChartFragment extends Fragment {
                 time_ms = Float.valueOf(pair.get(0)); // Had crashed here!
 
                 //Timber.d("time_ms=%f", time_ms);
-                if (time_ms > threeMonthsAgo) {
+                //if (time_ms > threeMonthsAgo) { // If you want to limit the viewed
                     quote_dollars = Float.valueOf(pair.get(1));
                     //Timber.d("quote_dollars=%4.4f", quote_dollars);
                     entries.add(new Entry(time_ms, quote_dollars));
                     entryCount++;
-                }
+                //}
             } catch (NumberFormatException e) {
                 continue;
             }
@@ -155,7 +160,7 @@ public class StockChartFragment extends Fragment {
         if (entryCount < 2) {
             Timber.e("Insufficient chart data available: %d entries", entryCount);
             TextView errorView = new TextView(getActivity());
-            errorView.setText("ERROR. CHART DATA NOT FOUND");
+            errorView.setText(R.string.fragment_chart_data_not_found);
             return (View) errorView;
         }
         Collections.sort(entries, new EntryXComparator());
@@ -171,8 +176,6 @@ public class StockChartFragment extends Fragment {
         dataSet.setVisible(true);
 
         XAxis xAxis = mLineChart.getXAxis();
-//        xAxis.setAxisMaximum(dataSet.getXMax());
-//        xAxis.setAxisMinimum(dataSet.getXMin());
         xAxis.setValueFormatter(new DateAxisFormatter());
 
         YAxis leftAxis = mLineChart.getAxisLeft();
@@ -186,13 +189,18 @@ public class StockChartFragment extends Fragment {
 
         List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(dataSet);
+        float max_x = dataSet.getXMax();
+        float max_y = dataSet.getYMax();
+
         LineData lineData = new LineData(dataSets);
 
         Paint paint = mLineChart.getPaint(PAINT_INFO);
         mLineChart.setData(lineData);
         mLineChart.notifyDataSetChanged();
         mLineChart.invalidate();
-
+        mLineChart.zoom(1f, 0.1f, max_x, max_y, YAxis.AxisDependency.LEFT);
+        mLineChart.centerViewTo(max_x, max_y, YAxis.AxisDependency.LEFT);
+        mLineChart.zoomOut();
 
         return v;
 

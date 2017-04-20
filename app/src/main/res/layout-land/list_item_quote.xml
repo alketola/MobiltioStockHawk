@@ -8,8 +8,7 @@
     android:elevation="4dp"
     android:gravity="start|left|center_vertical"
     android:orientation="horizontal"
-    android:paddingLeft="2dp"
-    android:paddingRight="2dp">
+    android:padding="@dimen/activity_landscape_margin">
 
     <FrameLayout
         android:layout_width="match_parent"

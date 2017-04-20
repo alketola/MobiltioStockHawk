@@ -23,5 +23,6 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="list_symbol_width_small_screen">50dp</dimen>
     <dimen name="list_price_width_small_screen">50dp</dimen>
     <dimen name="list_change_width_small_screen">70dp</dimen>
+    <dimen name="large_space">32dp</dimen>
 
 </resources>

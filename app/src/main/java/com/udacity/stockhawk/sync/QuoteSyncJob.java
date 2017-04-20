@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
 
 import timber.log.Timber;
 import yahoofinance.Stock;
@@ -62,7 +63,6 @@ public final class QuoteSyncJob {
             if (stockArray.length == 0) {
                 return;
             }
-
             Map<String, Stock> quotes = YahooFinance.get(stockArray, false); // includeHistorical = true
 
             Iterator<String> iterator = stockCopy.iterator();
@@ -102,7 +102,7 @@ public final class QuoteSyncJob {
                 StringBuilder historyBuilder = new StringBuilder();
 
                 for (HistoricalQuote it : history) {
-                    Timber.d("history = %s", it.toString());
+                    //Timber.d("history = %s", it.toString());
                     historyBuilder.append(it.getDate().getTimeInMillis());
                     historyBuilder.append(", ");
                     historyBuilder.append(it.getClose());

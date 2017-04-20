@@ -1,20 +1,6 @@
 <resources>
     <string name="app_name">الأسهم، هوك</string>
 
-    <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
-
-    <string name="pref_stocks_key">stocks</string>
-
-
-    <string name="pref_display_mode_key" translatable="false">displayMode</string>
-    <string name="pref_display_mode_default" translatable="false">@string/pref_display_mode_percentage_key</string>
-
-    <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
-    <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
-
-
-    <string name="action_change_units">@string/pref_display_mode_key</string>
-
 
     <string name="dialog_title">إضافة سهم</string>
     <string name="dialog_hint">اسم الرمز</string>
@@ -28,7 +14,6 @@
     <string name="toast_no_connectivity">سيتم تحديث عندما الشبكة المتاحة.</string>
     <string name="unavailable">غير متوفره</string>
 
-    <string name="pref_widget_stock_key">pref_widget_stock_key</string>
     <string name="widget_config">حدد الأسهم لتظهر في القطعة</string>
     <string name="stats_title">الإحصاء</string>
     <string name="stats_eps_title_text">EPS ربحية السه</string>
@@ -38,7 +23,6 @@
     <string name="stats_pb_title_text">P/B السعر لكل قيمة كتابية</string>
     <string name="stats_ps_title_text">\"P/S\" سعر البيع</string>
     <string name="statistics_menu_item">الإحصاء</string>
-    <string name="stocksymbol_extra_key">com.udacity.stockhawk.argument.stocksymbol</string>
     <string name="value_not_available">غير متاح</string>
     <string name="m_letter_for_million_values"> مليون</string>
     <string name="content_desc_change_of_stock_value">تغيير قيمة الأسهم</string>
@@ -74,5 +58,7 @@
     <string name="content_desc_main_menu_percentage">إظهار التغيير في النسبة المئوية</string>
     <string name="content_desc_stock_graph">تطور قيمة الأسهم حسب الرسم البياني الوقت.</string>
     <string name="list_of_stocks">قائمة الأسهم</string>
+    <string name="no_chart_stock_not_selected">الرسم البياني غير متوفر لأن رمز السهم غير محدد.</string>
+    <string name="fragment_chart_data_not_found">خطأ. لم يتم العثور على بيانات المخطط</string>
 
 </resources>

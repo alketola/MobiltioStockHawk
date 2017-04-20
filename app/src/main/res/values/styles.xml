@@ -69,4 +69,9 @@
         <item name="android:layout_margin">@dimen/activity_horizontal_margin</item>
     </style>
 
+    <style name="HawkAlertStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/ap_white</item>
+    </style>
+
 </resources>
