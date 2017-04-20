@@ -238,56 +238,32 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             adapter.notifyDataSetChanged();
             return true;
         } else if (id == R.id.action_goto_statistics) {
-            showStats(this, mSymbol);
+            UiUtil.startStatsActivity(this, mSymbol);
             return true;
         } else if (id == R.id.action_show_big_graph) {
-            startChartActivity(mSymbol);
+            UiUtil.startChartActivity(this, mSymbol);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-
-    private static void replaceChartFragment(FragmentActivity activity, String symbol) {
-        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fl_chart_in_main_land, new StockChartFragment().newInstance(symbol));
-        ft.commit();
-    }
-
     private void ifLandPutStockChart(String symbol) {
         if (null != findViewById(R.id.fl_chart_in_main_land)) {
-            replaceChartFragment(this, symbol);
+            UiUtil.replaceChartFragment(this, symbol);
         }
     }
 
     private void showStockChart(String symbol) {
         if (null != findViewById(R.id.fl_chart_in_main_land)) {
-            replaceChartFragment(this, symbol);
+            UiUtil.replaceChartFragment(this, symbol);
         } else {
-            startChartActivity(symbol);
+            UiUtil.startChartActivity(this, symbol);
         }
-    }
-
-    private void startChartActivity(String symbol) {
-        Intent showChart = new Intent(this, ChartActivity.class);
-        Timber.d("setStockChartFragment, starting ChartActivity");
-        showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
-
-        startActivity(showChart);
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
         Timber.d("onFragmentInteraction,    Uri: %s", uri);
-    }
-
-    private void showStats(Context context, String symbol) {
-
-        Intent gotoStats = new Intent(context, com.udacity.stockhawk.ui.StatsActivity.class);
-        gotoStats.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
-
-        startActivity(gotoStats);
-        Timber.d("Started Stats Activity from %s", context.toString());
     }
 }

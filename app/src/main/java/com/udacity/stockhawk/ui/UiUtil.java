@@ -2,6 +2,10 @@ package com.udacity.stockhawk.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+
+import com.udacity.stockhawk.R;
 
 import timber.log.Timber;
 
@@ -40,4 +44,29 @@ public class UiUtil {
         }
         return result;
     }
+
+
+    public static void startChartActivity(Context context, String symbol) {
+        Intent showChart = new Intent(context, ChartActivity.class);
+        Timber.d("setStockChartFragment, starting ChartActivity");
+        showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
+
+        context.startActivity(showChart);
+    }
+
+    public static void startStatsActivity(Context context, String symbol) {
+
+        Intent gotoStats = new Intent(context, com.udacity.stockhawk.ui.StatsActivity.class);
+        gotoStats.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
+
+        context.startActivity(gotoStats);
+        Timber.d("Started Stats Activity from %s", context.toString());
+    }
+
+    public static void replaceChartFragment(FragmentActivity activity, String symbol) {
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fl_chart_in_main_land, new StockChartFragment().newInstance(symbol));
+        ft.commit();
+    }
+
 }
