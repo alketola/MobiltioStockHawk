@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">الأسهم، هوك</string>
+
+    <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
+
+    <string name="pref_stocks_key">stocks</string>
+
+
+    <string name="pref_display_mode_key" translatable="false">displayMode</string>
+    <string name="pref_display_mode_default" translatable="false">@string/pref_display_mode_percentage_key</string>
+
+    <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
+    <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
+
+    <string name="default_stocks_yahoo">YHOO</string>
+    <string name="default_stocks_apple">AAPL</string>
+    <string name="default_stocks_microsoft">MSFT</string>
+    <string name="default_stocks_facebook">FB</string>
+
+
+    <string name="action_change_units">@string/pref_display_mode_key</string>
+
+
+    <string name="dialog_title">إضافة سهم</string>
+    <string name="dialog_hint">اسم الرمز</string>
+    <string name="dialog_cancel">إلغاء</string>
+    <string name="dialog_add">Add</string>
+
+    <string name="error_no_network">لا اتصال الشبكة! سيتم تحميل مؤشر الأسهم عندما تكون الشبكة متاحة.</string>
+    <string name="error_no_stocks">لم يتم إضافة أي أسهم! ضرب زر العمل العائمة لإضافة واحد.</string>
+
+    <string name="toast_stock_added_no_connectivity">تمت إضافة الرمز ٪1$s. سيتم تحديث عندما الشبكة المتاحة.</string>
+    <string name="toast_no_connectivity">سيتم تحديث عندما الشبكة المتاحة.</string>
+    <string name="unavailable">غير متوفره</string>
+
+    <string name="pref_widget_stock_key">pref_widget_stock_key</string>
+    <string name="widget_config">حدد الأسهم لتظهر في القطعة</string>
+    <string name="stats_title">الإحصاء</string>
+    <string name="stats_eps_title_text">EPS ربحية السه</string>
+    <string name="stats_epstarget_title_text">EPS target إبس الهدف</string>
+    <string name="stats_ebitda_title_text">EBITDA إبيتدا</string>
+    <string name="stats_pe_title_text">P/E سعر الأرباح</string>
+    <string name="stats_pb_title_text">P/B السعر لكل قيمة كتابية</string>
+    <string name="stats_ps_title_text">\"P/S\" سعر البيع</string>
+    <string name="statistics_menu_item">الإحصاء</string>
+    <string name="stocksymbol_extra_key">com.udacity.stockhawk.argument.stocksymbol</string>
+    <string name="value_not_available">غير متاح</string>
+    <string name="m_letter_for_million_values"> مليون</string>
+    <string name="content_desc_change_of_stock_value">تغيير قيمة الأسهم</string>
+    <string name="content_desc_current_value">تغيير قيمة الأسهم</string>
+    <string name="content_desc_stock_symbol">رمز السهم</string>
+    <string name="stat_title_bvps">BVPS</string>
+    <string name="stats_ask_price_title_text">اسئل عن السعر</string>
+    <string name="stats_bid_price_title_text">سعر</string>
+    <string name="stats_change_today">تغيير اليوم</string>
+    <string name="stats_change_50d_percent">التغيير في متوسط 50 يوما</string>
+    <string name="stats_change_200d_percent">التغيير في متوسط 200 يوم</string>
+    <string name="stats_currency">دقة</string>
+    <string name="accept_widget">قبول</string>
+    <string name="appwidget_stock_error">الأسهم غير مهيأة</string>
+    <string name="error_invalid_or_unavailable_statistical_data">خطأ. بيانات إحصائية غير صالحة أو غير قابلة للنقل.</string>
+    <string name="eps_estimate_current_year">إبس تقدير السنة الحالية</string>
+    <string name="eps_estimate_next_quarter">إبس الربع المقبل</string>
+    <string name="peg">PEG السعر / الأرباح إلى النمو</string>
+    <string name="roe">العائد على حقوق المساهمين</string>
+    <string name="shares_float">سهم تعويم</string>
+    <string name="shares_outstanding">الأسهم المعلقة</string>
+    <string name="shares_owned">الأسهم المملوكة</string>
+    <string name="short_ratio">نسبة قصيرة</string>
+    <string name="revenue">إيرادات</string>
+    <string name="market_capitalization">القيمة السوقية</string>
+    <string name="one_year_target_price">سنة واحدة السعر المستهدف</string>
+    <string name="action_show_big_graph">رسم بياني</string>
+    <string name="big_graph_title">رسم بياني</string>
+
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_change_units"
+        android:icon="@drawable/ic_dollar"
+        android:orderInCategory="99"
+        android:title="@string/action_change_units"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_goto_statistics"
+        android:title="@string/statistics_menu_item"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_show_big_graph"
+        android:title="@string/action_show_big_graph"
+        app:showAsAction="ifRoom"/>
+
+</menu>

@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Osakehaukka</string>
+
+    <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
+
+    <string name="pref_stocks_key">stocks</string>
+
+
+    <string name="pref_display_mode_key" translatable="false">displayMode</string>
+    <string name="pref_display_mode_default" translatable="false">@string/pref_display_mode_percentage_key</string>
+
+    <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
+    <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
+
+    <string name="default_stocks_yahoo" translatable="false">YHOO</string>
+    <string name="default_stocks_apple" translatable="false">AAPL</string>
+    <string name="default_stocks_microsoft" translatable="false">MSFT</string>
+    <string name="default_stocks_facebook" translatable="false">FB</string>
+
+
+    <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
+
+
+    <string name="dialog_title">Lisää osake</string>
+    <string name="dialog_hint">Osakkeen symboli (e.g. GOOG)</string>
+    <string name="dialog_cancel">Peru</string>
+    <string name="dialog_add" translatable="false">Add</string>
+
+    <string name="error_no_network">Ei verkkoyhteyttä! Osaketiedot ladataan kun yhteys palautuu.</string>
+    <string name="error_no_stocks">Ei yhtään osaketta listalla! Paina kelluvaa toimintonappulaa lisätäksesi.</string>
+
+    <string name="toast_stock_added_no_connectivity">Osake %1$s lisätty. Päivitetään kun verkkoyhteys palautuu.</string>
+    <string name="toast_no_connectivity">Päivitetään kunhan verkkoyhteys palautuu.</string>
+    <string name="unavailable">EI SAATAVILLA</string>
+
+    <string name="pref_widget_stock_key" translatable="false">pref_widget_stock_key</string>
+    <string name="appwidget_stock_error">Osaketta ei valittu</string>
+    <string name="widget_config">Valitse vimpaimessa näyttettävä osake</string>
+    <string name="accept_widget">Hyväksy</string>
+    <string name="stats_title">Tilastot</string>
+    <string name="stats_eps_title_text" >EPS (osakekohtainen tulos)</string>
+    <string name="stats_epstarget_title_text" >EPS tavoite (ensi vuodelle)</string>
+    <string name="stats_ebitda_title_text" translatable="false">EBITDA</string>
+    <string name="stats_pe_title_text">P/E (hinta per tulot)</string>
+    <string name="stats_pb_title_text">P/B (hinta per kirjanpitoarvo)</string>
+    <string name="stats_ps_title_text">P/S (hinta per myynti)</string>
+    <string name="statistics_menu_item">Tilastot</string>
+    <string name="stocksymbol_extra_key" translatable="false">com.udacity.stockhawk.argument.stocksymbol</string>
+    <string name="error_invalid_or_unavailable_statistical_data">VIRHE. KUNNON TILASTOJA EI SAATAVILLA.</string>
+    <string name="value_not_available">EI SAATAVILLA</string>
+    <string name="m_letter_for_million_values" translatable="false">M</string>
+    <string name="content_desc_change_of_stock_value">Osakkeen arvon muutos</string>
+    <string name="content_desc_current_value">Osakkeen nykyinen arvo</string>
+    <string name="content_desc_stock_symbol">Osakkeen symboli</string>
+    <string name="stat_title_bvps" translatable="false">BVPS</string>
+    <string name="stats_ask_price_title_text">Pyyntihinta</string>
+    <string name="stats_bid_price_title_text">Tarjoushinta</string>
+    <string name="stats_change_today">Muutos tänään</string>
+    <string name="stats_change_50d_percent">Muutos 50 pv. keskim.</string>
+    <string name="stats_change_200d_percent">Muutos 200 pv. keskim.</string>
+    <string name="stats_currency">Valuutta</string>
+    <string name="eps_estimate_current_year">EPS estimate current year</string>
+    <string name="eps_estimate_next_quarter">EPS estimate next quarter</string>
+    <string name="peg">PEG (Hinta per tulot per kasvu)</string>
+    <string name="roe">Osakkeen tuotto %</string>
+    <string name="shares_float">Osakkeita markkinoilla</string>
+    <string name="shares_outstanding">Osakkeiden kokonaismäärä</string>
+    <string name="shares_owned">Omien osakkeiden omistus</string>
+    <string name="short_ratio">Lyhyeksimyyntisuhde</string>
+    <string name="revenue">Yrityksen tulot</string>
+    <string name="market_capitalization">Markkina-arvo</string>
+    <string name="one_year_target_price">1 v tavoitehinta</string>
+    <string name="action_show_big_graph">Kuvaaja</string>
+    <string name="big_graph_title">Osakkeen kuvaaja</string>
+
+</resources>
