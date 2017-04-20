@@ -126,6 +126,7 @@ public class StockChartFragment extends Fragment {
         LineChart mLineChart;
         mLineChart = (LineChart) v.findViewById(R.id.chart_view);
         mLineChart.setScaleEnabled(true);
+        mLineChart.setDoubleTapToZoomEnabled(false);
 
         List<Entry> entries = new ArrayList<Entry>();
         int entryCount = 0;

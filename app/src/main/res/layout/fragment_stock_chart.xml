@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/off_white"
-        android:padding="@dimen/activity_landscape_margin" />
+        android:padding="@dimen/activity_landscape_margin"
+        android:contentDescription="@string/content_desc_stock_graph" />
 
 </FrameLayout>

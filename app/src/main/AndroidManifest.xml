@@ -23,11 +23,11 @@
         </activity>
         <activity
             android:name=".ui.ChartActivity"
-            android:label="Stock Chart" />
+            android:label="@string/label_stock_chart" />
 
         <activity
             android:name=".ui.StatsActivity"
-            android:label="Statistics"></activity>
+            android:label="@string/stats_title"></activity>
 
 
         <service

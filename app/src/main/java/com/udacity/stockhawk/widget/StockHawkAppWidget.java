@@ -19,6 +19,7 @@ import com.udacity.stockhawk.sync.QuoteSyncJob;
 import com.udacity.stockhawk.ui.ChartActivity;
 import com.udacity.stockhawk.ui.MainActivity;
 import com.udacity.stockhawk.ui.StockChartFragment;
+import com.udacity.stockhawk.ui.UiUtil;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -73,6 +74,7 @@ public class StockHawkAppWidget extends AppWidgetProvider {
         String price = dollarFormat.format(cursor.getFloat(Contract.Quote.POSITION_PRICE));
 
         views.setTextViewText(R.id.widget_symbol, symbol);
+        views.setContentDescription(R.id.widget_symbol, UiUtil.spaceOutAcronym(symbol));
         views.setTextViewText(R.id.widget_price, price);
         views.setTextViewText(R.id.widget_change, percentage);
         if (rawAbsoluteChange > 0) {

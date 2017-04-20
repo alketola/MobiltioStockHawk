@@ -12,11 +12,6 @@
     <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
     <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
 
-    <string name="default_stocks_yahoo" translatable="false">YHOO</string>
-    <string name="default_stocks_apple" translatable="false">AAPL</string>
-    <string name="default_stocks_microsoft" translatable="false">MSFT</string>
-    <string name="default_stocks_facebook" translatable="false">FB</string>
-
 
     <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
 
@@ -24,7 +19,7 @@
     <string name="dialog_title">Lisää osake</string>
     <string name="dialog_hint">Osakkeen symboli (e.g. GOOG)</string>
     <string name="dialog_cancel">Peru</string>
-    <string name="dialog_add" translatable="false">Add</string>
+    <string name="dialog_add" translatable="false">Lisää</string>
 
     <string name="error_no_network">Ei verkkoyhteyttä! Osaketiedot ladataan kun yhteys palautuu.</string>
     <string name="error_no_stocks">Ei yhtään osaketta listalla! Paina kelluvaa toimintonappulaa lisätäksesi.</string>
@@ -52,7 +47,6 @@
     <string name="content_desc_change_of_stock_value">Osakkeen arvon muutos</string>
     <string name="content_desc_current_value">Osakkeen nykyinen arvo</string>
     <string name="content_desc_stock_symbol">Osakkeen symboli</string>
-    <string name="stat_title_bvps" translatable="false">BVPS</string>
     <string name="stats_ask_price_title_text">Pyyntihinta</string>
     <string name="stats_bid_price_title_text">Tarjoushinta</string>
     <string name="stats_change_today">Muutos tänään</string>
@@ -72,5 +66,13 @@
     <string name="one_year_target_price">1 v tavoitehinta</string>
     <string name="action_show_big_graph">Kuvaaja</string>
     <string name="big_graph_title">Osakkeen kuvaaja</string>
+    <string name="content_desc_error_message">Virheilmoitus</string>
+    <string name="content_desc_fab_add_stock">Painike: lisää uusi osake</string>
+    <string name="content_desc_swipe_refresh">Pyyhkäise alas päivittääksesi listan</string>
+    <string name="label_stock_chart">Osakkeen kuvaaja</string>
+    <string name="content_desc_main_menu_percentage">Näytä muutos prosenteissa</string>
+    <string name="content_desc_main_menu_currency">Näytä muutos valuutassa</string>
+    <string name="content_desc_stock_graph">Kuvaaja osakkeen arvon kehityksestä ajan kuluessa.</string>
+    <string name="list_of_stocks">osakelista</string>
 
 </resources>

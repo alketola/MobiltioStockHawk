@@ -12,11 +12,6 @@
     <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
     <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
 
-    <string name="default_stocks_yahoo">YHOO</string>
-    <string name="default_stocks_apple">AAPL</string>
-    <string name="default_stocks_microsoft">MSFT</string>
-    <string name="default_stocks_facebook">FB</string>
-
 
     <string name="action_change_units">@string/pref_display_mode_key</string>
 
@@ -24,7 +19,7 @@
     <string name="dialog_title">إضافة سهم</string>
     <string name="dialog_hint">اسم الرمز</string>
     <string name="dialog_cancel">إلغاء</string>
-    <string name="dialog_add">Add</string>
+    <string name="dialog_add">إضافة</string>
 
     <string name="error_no_network">لا اتصال الشبكة! سيتم تحميل مؤشر الأسهم عندما تكون الشبكة متاحة.</string>
     <string name="error_no_stocks">لم يتم إضافة أي أسهم! ضرب زر العمل العائمة لإضافة واحد.</string>
@@ -49,7 +44,6 @@
     <string name="content_desc_change_of_stock_value">تغيير قيمة الأسهم</string>
     <string name="content_desc_current_value">تغيير قيمة الأسهم</string>
     <string name="content_desc_stock_symbol">رمز السهم</string>
-    <string name="stat_title_bvps">BVPS</string>
     <string name="stats_ask_price_title_text">اسئل عن السعر</string>
     <string name="stats_bid_price_title_text">سعر</string>
     <string name="stats_change_today">تغيير اليوم</string>
@@ -72,5 +66,13 @@
     <string name="one_year_target_price">سنة واحدة السعر المستهدف</string>
     <string name="action_show_big_graph">رسم بياني</string>
     <string name="big_graph_title">رسم بياني</string>
+    <string name="content_desc_fab_add_stock">زر لإضافة جديد مخزون جديد</string>
+    <string name="content_desc_swipe_refresh">مرر لأسفل لتحديث قائمة الأسهم</string>
+    <string name="label_stock_chart">رسم بياني</string>
+    <string name="content_desc_error_message">رسالة خطأ</string>
+    <string name="content_desc_main_menu_currency">إظهار التغيير في العملة</string>
+    <string name="content_desc_main_menu_percentage">إظهار التغيير في النسبة المئوية</string>
+    <string name="content_desc_stock_graph">تطور قيمة الأسهم حسب الرسم البياني الوقت.</string>
+    <string name="list_of_stocks">قائمة الأسهم</string>
 
 </resources>
