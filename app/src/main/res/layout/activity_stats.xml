@@ -4,6 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv_activity_stats_error"
+        style="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription=""
+        android:text="@string/error_invalid_or_unavailable_statistical_data"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:visibility="invisible" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -72,7 +84,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="One year target price" />
+                    android:text="@string/one_year_target_price" />
 
                 <TextView
                     android:id="@+id/tv_1y_target_price"
@@ -231,7 +243,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EPS estimate current year" />
+                    android:text="@string/eps_estimate_current_year" />
 
                 <TextView
                     android:id="@+id/tv_est_curr_y"
@@ -246,7 +258,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EPS estimate next quarter" />
+                    android:text="@string/eps_estimate_next_quarter" />
 
                 <TextView
                     android:id="@+id/tv_est_next_q"
@@ -262,7 +274,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PEG" />
+                    android:text="@string/peg" />
 
                 <TextView
                     android:id="@+id/tv_peg"
@@ -277,7 +289,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ROE" />
+                    android:text="@string/roe" />
 
                 <TextView
                     android:id="@+id/tv_roe"
@@ -292,7 +304,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shares float" />
+                    android:text="@string/shares_float" />
 
                 <TextView
                     android:id="@+id/tv_shares_float"
@@ -307,7 +319,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shares outstanding" />
+                    android:text="@string/shares_outstanding" />
 
                 <TextView
                     android:id="@+id/tv_shares_outstanding"
@@ -322,7 +334,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shares owned" />
+                    android:text="@string/shares_owned" />
 
                 <TextView
                     android:id="@+id/tv_shares_owned"
@@ -337,7 +349,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Short ratio" />
+                    android:text="@string/short_ratio" />
 
                 <TextView
                     android:id="@+id/tv_short_ratio"
@@ -352,7 +364,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Revenue" />
+                    android:text="@string/revenue" />
 
                 <TextView
                     android:id="@+id/tv_revenue"
@@ -367,7 +379,7 @@
                     style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Market capitalization" />
+                    android:text="@string/market_capitalization" />
 
                 <TextView
                     android:id="@+id/tv_market_cap"
@@ -389,22 +401,12 @@
                     style="@style/StatValueStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    tools:text="$3.33" />
+                    tools:text="3333.33" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/tv_activity_stats_error"
-        style="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:contentDescription=""
-        android:text="@string/error_invalid_or_unavailable_statistical_data"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:visibility="invisible" />
 </FrameLayout>

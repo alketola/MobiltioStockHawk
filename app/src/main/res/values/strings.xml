@@ -3,61 +3,74 @@
 
     <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
 
-    <string name="pref_stocks_key">stocks</string>
+    <string name="pref_stocks_key" translatable="false">stocks</string>
 
 
-    <string name="pref_display_mode_key">displayMode</string>
-    <string name="pref_display_mode_default">@string/pref_display_mode_percentage_key</string>
+    <string name="pref_display_mode_key" translatable="false">displayMode</string>
+    <string name="pref_display_mode_default" translatable="false">@string/pref_display_mode_percentage_key</string>
 
     <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
     <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
 
-    <string name="default_stocks_yahoo">YHOO</string>
-    <string name="default_stocks_apple">AAPL</string>
-    <string name="default_stocks_microsoft">MSFT</string>
-    <string name="default_stocks_facebook">FB</string>
+    <string name="default_stocks_yahoo" translatable="false">YHOO</string>
+    <string name="default_stocks_apple" translatable="false">AAPL</string>
+    <string name="default_stocks_microsoft" translatable="false">MSFT</string>
+    <string name="default_stocks_facebook" translatable="false">FB</string>
 
 
-    <string name="action_change_units">@string/pref_display_mode_key</string>
+    <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
 
 
     <string name="dialog_title">Add Stock</string>
     <string name="dialog_hint">Symbol (e.g. GOOG)</string>
     <string name="dialog_cancel">Cancel</string>
-    <string name="dialog_add">Add</string>
+    <string name="dialog_add" translatable="false">Add</string>
 
     <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
 
-    <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
+    <string name="toast_stock_added_no_connectivity">Symbol %1$s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
     <string name="unavailable">UNAVAILABLE</string>
 
-    <string name="pref_widget_stock_key">pref_widget_stock_key</string>
+    <string name="pref_widget_stock_key" translatable="false">pref_widget_stock_key</string>
     <string name="appwidget_stock_error">Stock not configured</string>
     <string name="widget_config">Select Stock to show in Widget</string>
     <string name="accept_widget">Accept</string>
     <string name="stats_title">Statistics</string>
-    <string name="stats_eps_title_text">EPS (Earnings Per Share)</string>
-    <string name="stats_epstarget_title_text">EPS target (next year)</string>
+    <string name="stats_eps_title_text" >EPS (Earnings Per Share)</string>
+    <string name="stats_epstarget_title_text" >EPS target (next year)</string>
     <string name="stats_ebitda_title_text">EBITDA</string>
     <string name="stats_pe_title_text">P/E (Price per Earnings)</string>
     <string name="stats_pb_title_text">P/B (Price per bookvalue)</string>
     <string name="stats_ps_title_text">P/S (price per sales)</string>
     <string name="statistics_menu_item">Statistics</string>
-    <string name="stocksymbol_extra_key">com.udacity.stockhawk.argument.stocksymbol</string>
+    <string name="stocksymbol_extra_key" translatable="false">com.udacity.stockhawk.argument.stocksymbol</string>
     <string name="error_invalid_or_unavailable_statistical_data">ERROR. INVALID OR UNAVAILABLE STATISTICAL DATA.</string>
     <string name="value_not_available">N/A</string>
-    <string name="m_letter_for_million_values">M</string>
+    <string name="m_letter_for_million_values" translatable="false">M</string>
     <string name="content_desc_change_of_stock_value">Change of stock value</string>
     <string name="content_desc_current_value">Current value of stock</string>
     <string name="content_desc_stock_symbol">Stock symbol</string>
-    <string name="stat_title_bvps">BVPS</string>
+    <string name="stat_title_bvps" translatable="false">BVPS</string>
     <string name="stats_ask_price_title_text">Ask price</string>
     <string name="stats_bid_price_title_text">Bid price</string>
     <string name="stats_change_today">Change today</string>
     <string name="stats_change_50d_percent">Change in 50 days average</string>
     <string name="stats_change_200d_percent">Change in 200 days average</string>
     <string name="stats_currency">Currency</string>
+    <string name="eps_estimate_current_year">EPS estimate current year</string>
+    <string name="eps_estimate_next_quarter">EPS estimate next quarter</string>
+    <string name="peg">PEG</string>
+    <string name="roe">ROE</string>
+    <string name="shares_float">Shares float</string>
+    <string name="shares_outstanding">Shares outstanding</string>
+    <string name="shares_owned">Shares owned</string>
+    <string name="short_ratio">Short ratio</string>
+    <string name="revenue">Revenue</string>
+    <string name="market_capitalization">Market capitalization</string>
+    <string name="one_year_target_price">1 y target price</string>
+    <string name="action_show_big_graph">Graph</string>
+    <string name="big_graph_title">Graph of stock value</string>
 
 </resources>

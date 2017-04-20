@@ -48,7 +48,7 @@ public final class QuoteSyncJob {
 
         Calendar from = Calendar.getInstance();
         Calendar to = Calendar.getInstance();
-        from.add(Calendar.MONTH, MONTHS_OF_HISTORY);
+        from.add(Calendar.YEAR, -YEARS_OF_HISTORY);
 
         try {
 

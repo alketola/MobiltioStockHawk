@@ -58,14 +58,14 @@
         <item name="android:layout_margin">@dimen/activity_horizontal_margin</item>
     </style>
 
-    <style name="StatTitleStyle" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textSize">20sp</item>
+    <style name="StatTitleStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_margin">@dimen/activity_horizontal_margin</item>
     </style>
 
-    <style name="StatValueStyle" parent="TextAppearance.AppCompat.Large">
-        <item name="android:textSize">18sp</item>
+    <style name="StatValueStyle" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">13sp</item>
         <item name="android:layout_margin">@dimen/activity_horizontal_margin</item>
     </style>
 

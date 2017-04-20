@@ -1,6 +1,7 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -102,7 +103,10 @@ public class StatsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         mSymbol = bundle.getString(StockChartFragment.ARG_STOCK_TICKER);
-        String myTitle = getString(R.string.app_name)
+        Configuration config = getResources().getConfiguration();
+        String myTitle;
+
+        myTitle = getString(R.string.app_name)
                 + " - "
                 + getString(R.string.stats_title)
                 + " : "
@@ -118,6 +122,7 @@ public class StatsActivity extends AppCompatActivity {
         super.onResume();
         FinanceStatGetter getter = new FinanceStatGetter();
         getter.execute(mSymbol);
+        showError(false);
     }
 
     @Override
@@ -186,8 +191,8 @@ public class StatsActivity extends AppCompatActivity {
             setStatString(stats.getPriceSales(), tv_ps);
             setStatStringM(stats.getRevenue(), tv_revenue);
             setStatString(stats.getROE(), tv_roe);
-            setStatString(stats.getSharesFloat(), tv_shares_float);
-            setStatString(stats.getSharesOutstanding(), tv_shares_outstanding);
+            setStatStringM(stats.getSharesFloat(), tv_shares_float);
+            setStatStringM(stats.getSharesOutstanding(), tv_shares_outstanding);
             Long owned = stats.getSharesOwned();
             setStatString(owned, tv_shares_owned);
             setStatString(stats.getShortRatio(), tv_short_ratio);
@@ -221,7 +226,21 @@ public class StatsActivity extends AppCompatActivity {
         BigDecimal bd_m = bd.divide(million);
 
         try {
-            s = bd_m.toString() + getString(R.string.m_letter_for_million_values);
+            s = bd_m.toString() + " " + getString(R.string.m_letter_for_million_values);
+        } catch (Exception e) {
+            s = getString(R.string.value_not_available);
+        }
+        tv.setText(s);
+    }
+
+    private void setStatStringM(Long long_int, TextView tv) {
+        String s;
+        BigDecimal million = new BigDecimal("1000000");
+        BigDecimal bd_long = new BigDecimal(long_int);
+        BigDecimal bd_m = bd_long.divide(million);
+
+        try {
+            s = bd_m.toString() + " " + getString(R.string.m_letter_for_million_values);
         } catch (Exception e) {
             s = getString(R.string.value_not_available);
         }
@@ -242,6 +261,7 @@ public class StatsActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putString("StatsStockSymbol", mSymbol);
+
         super.onSaveInstanceState(outState);
         Timber.d("Saved instance state");
     }
