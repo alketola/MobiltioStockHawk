@@ -233,6 +233,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         } else if (id == R.id.action_goto_statistics) {
             showStats(this, mSymbol);
             return true;
+        } else if (id == R.id.action_show_big_graph) {
+            startChartActivity(mSymbol);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -255,12 +258,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (null != findViewById(R.id.fl_chart_in_main_land)) {
             replaceChartFragment(this, symbol);
         } else {
-            Intent showChart = new Intent(this, ChartActivity.class);
-            Timber.d("setStockChartFragment, starting ChartActivity");
-            showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
-
-            startActivity(showChart);
+            startChartActivity(symbol);
         }
+    }
+
+    private void startChartActivity(String symbol) {
+        Intent showChart = new Intent(this, ChartActivity.class);
+        Timber.d("setStockChartFragment, starting ChartActivity");
+        showChart.putExtra(StockChartFragment.ARG_STOCK_TICKER, symbol);
+
+        startActivity(showChart);
     }
 
     @Override
