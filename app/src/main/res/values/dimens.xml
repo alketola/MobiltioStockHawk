@@ -15,7 +15,12 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
 
     <dimen name="widget_symbol_width">60dp</dimen>
     <dimen name="widget_price_width">60dp</dimen>
-    <dimen name="widget_change_width">75dp</dimen>
+    <dimen name="widget_change_width">60dp</dimen>
+
+    <dimen name="widget_default_width">110dp</dimen>
+    <dimen name="widget_default_heigth">40dp</dimen>
+    <dimen name="widget_large_height">180dp</dimen>
+    <dimen name="widget_large_width">180dp</dimen>
 
     <dimen name="chart_padding">4dp</dimen>
     <!-- Small screen -->
@@ -25,5 +30,6 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="list_price_width_small_screen">50dp</dimen>
     <dimen name="list_change_width_small_screen">70dp</dimen>
     <dimen name="large_space">32dp</dimen>
+
 
 </resources>

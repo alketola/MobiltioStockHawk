@@ -5,6 +5,37 @@
     android:padding="@dimen/widget_padding"
     android:background="@color/my_semi_opaque_dark_grey">
 
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_widget_app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@color/my_semi_opaque_grey"
+            android:gravity="left|start|top"
+            android:padding="@dimen/widget_in_margin"
+            android:text="@string/app_name"
+            android:textColor="@color/ap_white"
+            android:textSize="12sp"
+            android:visibility="visible" />
+
+        <ListView
+            android:id="@+id/lv_widget_stock_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:dividerHeight="2dp"
+            android:layout_margin="@dimen/widget_in_margin"
+            android:layout_gravity="center"
+            tools:listitem="@layout/stock_hawk_widget_line" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_widget_error"
         android:layout_width="match_parent"
@@ -16,35 +47,5 @@
         android:textColor="@color/material_red_700"
         android:visibility="gone" />
 
-    <LinearLayout
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/widget_margin"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/widget_margin"
-            android:background="@color/my_semi_opaque_grey"
-            android:gravity="left|start|top"
-            android:paddingTop="@dimen/widget_padding"
-            android:paddingBottom="@dimen/widget_padding"
-            android:paddingLeft="@dimen/widget_padding"
-            android:layout_marginStart="@dimen/widget_margin"
-            android:layout_marginLeft="@dimen/widget_margin"
-            android:text="@string/app_name"
-            android:textColor="@color/ap_white"
-            android:textSize="12sp"
-            android:visibility="visible" />
-
-        <ListView
-            android:id="@+id/lv_widget_stock_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@null"
-            android:dividerHeight="1dp"
-            tools:listitem="@layout/stock_hawk_widget_line" />
-    </LinearLayout>
 </FrameLayout>

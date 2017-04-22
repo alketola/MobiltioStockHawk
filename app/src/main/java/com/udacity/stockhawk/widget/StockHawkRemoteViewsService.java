@@ -1,5 +1,6 @@
 package com.udacity.stockhawk.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,8 @@ import android.widget.RemoteViewsService;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
+import com.udacity.stockhawk.ui.ChartActivity;
+import com.udacity.stockhawk.ui.StockChartFragment;
 import com.udacity.stockhawk.ui.UiUtil;
 
 import java.text.DecimalFormat;
@@ -152,6 +155,10 @@ public class StockHawkRemoteViewsService extends RemoteViewsService {
                         R.drawable.percent_change_pill_red);
             }
             remoteListRow.setTextViewText(R.id.tv_widget_change, percentage);
+
+            Intent detailFillInIntent = new Intent();
+            detailFillInIntent.putExtra(StockChartFragment.ARG_STOCK_TICKER, stockSymbol);
+            remoteListRow.setOnClickFillInIntent(R.id.stock_hawk_widget_line, detailFillInIntent);
 
             return remoteListRow;
         }

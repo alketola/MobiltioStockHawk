@@ -4,9 +4,12 @@
     android:initialLayout="@layout/stock_hawk_app_widget"
     android:minHeight="40dp"
     android:minWidth="180dp"
+    android:minResizeHeight="40dp"
+    android:minResizeWidth="180dp"
     android:previewImage="@drawable/stockhawk_widget_preview"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="10000"
     android:widgetCategory="home_screen">
     <!--android:configure="com.udacity.stockhawk.widget.StockHawkAppWidgetConfigureActivity"-->
+
 </appwidget-provider>
