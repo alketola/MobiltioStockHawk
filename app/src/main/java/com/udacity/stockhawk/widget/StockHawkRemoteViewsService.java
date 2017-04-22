@@ -143,7 +143,7 @@ public class StockHawkRemoteViewsService extends RemoteViewsService {
 
             float rawAbsoluteChange = mCursor.getFloat(Contract.Quote.POSITION_ABSOLUTE_CHANGE);
             float percentageChange = mCursor.getFloat(Contract.Quote.POSITION_PERCENTAGE_CHANGE);
-            String percentage = percentageFormat.format(percentageChange);
+            String percentage = percentageFormat.format(percentageChange / 100);
             if (rawAbsoluteChange > 0) {
                 remoteListRow.setImageViewResource(R.id.widget_change_background,
                         R.drawable.percent_change_pill_green);
