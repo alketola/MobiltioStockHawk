@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stock_hawk_widget_line"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:gravity="fill_horizontal|center_vertical"
+    android:padding="@dimen/widget_padding"
+    android:layout_margin="@dimen/widget_margin"
+    android:background="@color/ap_charcoal">
+
+    <TextView
+        android:id="@+id/tv_widget_symbol"
+        style="@style/WidgetStockSymbolTextStyle"
+        android:layout_width="@dimen/widget_symbol_width"
+        android:layout_height="wrap_content"
+        android:gravity="left|start|top"
+        tools:text="GOOG" />
+
+    <TextView
+        android:id="@+id/tv_widget_price"
+        style="@style/WidgetBidPriceTextStyle"
+        android:layout_width="@dimen/widget_price_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        tools:text="1000.00" />
+
+    <RelativeLayout
+        android:id="@+id/widget_change_frame"
+        android:layout_width="@dimen/widget_change_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal|center_vertical"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_widget_price"
+        app:layout_constraintLeft_toRightOf="@+id/tv_widget_price"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/widget_change_background"
+            android:layout_width="@dimen/widget_change_width"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_widget_change"
+            android:layout_alignTop="@+id/tv_widget_change"
+            android:layout_centerVertical="true"
+            android:padding="0dp"
+            android:layout_margin="@dimen/widget_margin"
+            android:cropToPadding="true" />
+
+        <TextView
+            android:id="@+id/tv_widget_change"
+            style="@style/WidgetPercentChangeTextStyle"
+            android:layout_width="@dimen/widget_change_width"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="left|start|center_vertical"
+            android:layout_margin="@dimen/widget_in_margin"
+            android:padding="0dp"
+            android:visibility="visible"
+            tools:text="+10%" />
+    </RelativeLayout>
+</LinearLayout>
+

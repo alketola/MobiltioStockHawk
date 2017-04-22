@@ -82,5 +82,6 @@
     <string name="list_of_stocks">list of stocks</string>
     <string name="no_chart_stock_not_selected">Chart is not available as no stock is selected.</string>
     <string name="fragment_chart_data_not_found">ERROR. DATAA EI LÖYTYNYT.</string>
+    <string name="action_data_updated_key" translatable="false">com.udacity.stockhawk.ACTION_DATA_UPDATED</string>
 
 </resources>

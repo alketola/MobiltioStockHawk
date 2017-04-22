@@ -33,7 +33,7 @@ import yahoofinance.quotes.stock.StockQuote;
 public final class QuoteSyncJob {
 
     private static final int ONE_OFF_ID = 2;
-    private static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
+    public static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";//(com.udacity.stockhawk.R.string.acttion_data_updated_key);
     private static final int PERIOD = 300000;
     private static final int INITIAL_BACKOFF = 10000;
     private static final int PERIODIC_ID = 1;
@@ -93,7 +93,7 @@ public final class QuoteSyncJob {
                 // WARNING! Don't request historical data for a stock that doesn't exist!
                 // The request will hang forever X_x
 
-                List<HistoricalQuote> history = stock.getHistory(from, to, Interval.DAILY);
+                List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);// TODO DAILY
                 if (history != null) {
                     Timber.d("HISTORY = %s", history);
                 } else {

@@ -37,18 +37,18 @@ public class StockHawkAppWidgetConfigureActivity extends AppCompatActivity {
         public void onClick(View v) {
             final Context context = StockHawkAppWidgetConfigureActivity.this;
 
-            // When the button is clicked, store the string locally
-            saveWidgetStockPref(context, mAppWidgetId, mSelectedStock);
-
-            // It is the responsibility of the configuration activity to update the app widget
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-
-            StockHawkAppWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
-
-            // Make sure we pass back the original appWidgetId
-            Intent resultValue = new Intent();
-            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
-            setResult(RESULT_OK, resultValue);
+//            // When the button is clicked, store the string locally
+//            saveWidgetStockPref(context, mAppWidgetId, mSelectedStock);
+//
+//            // It is the responsibility of the configuration activity to update the app widget
+//            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+//
+//            updateAppWidget(context, mCursor, appWidgetManager, mAppWidgetId);
+//
+//            // Make sure we pass back the original appWidgetId
+//            Intent resultValue = new Intent();
+//            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+//            setResult(RESULT_OK, resultValue);
 
             finish();
         }
@@ -115,6 +115,7 @@ public class StockHawkAppWidgetConfigureActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        if (true) return;
         super.onResume();
         Context context = StockHawkAppWidgetConfigureActivity.this;
         //mAppWidgetText.setText(loadWidgetStockPref(StockHawkAppWidgetConfigureActivity.this, mAppWidgetId))

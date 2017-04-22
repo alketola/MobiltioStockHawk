@@ -29,7 +29,6 @@
             android:name=".ui.StatsActivity"
             android:label="@string/stats_title"></activity>
 
-
         <service
             android:name=".sync.QuoteIntentService"
             android:exported="false" />
@@ -44,9 +43,10 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
+        <!-- Widget -->
         <receiver android:name=".widget.StockHawkAppWidget">
             <intent-filter>
+                <action android:name="com.udacity.stockhawk.ACTION_DATA_UPDATED" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
@@ -54,6 +54,14 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/stock_hawk_app_widget_info" />
         </receiver>
+
+        <service
+            android:name=".widget.StockHawkRemoteViewsService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <service android:name=".widget.StockHawkWidgetIntentService" />
 
         <activity android:name=".widget.StockHawkAppWidgetConfigureActivity">
             <intent-filter>
