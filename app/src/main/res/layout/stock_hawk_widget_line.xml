@@ -33,7 +33,7 @@
         android:id="@+id/widget_change_frame"
         android:layout_width="@dimen/widget_change_width"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal|center_vertical"
+        android:layout_gravity="center"
         android:layout_margin="0dp"
         android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_widget_price"
