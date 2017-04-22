@@ -116,7 +116,6 @@ public class StockChartFragment extends Fragment {
             cursor.moveToFirst();
             history = cursor.getString(cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY));
 
-            Timber.d("History = %s", history);
             cursor.close();
         } else {
             Timber.d("No cursor.");

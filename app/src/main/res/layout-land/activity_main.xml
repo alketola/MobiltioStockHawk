@@ -52,7 +52,8 @@
                     android:paddingLeft="@dimen/layout_margin_small_screen"
                     android:paddingStart="@dimen/layout_margin_small_screen"
                     android:paddingRight="0dp"
-                    android:paddingEnd="0dp" />
+                    android:paddingEnd="0dp"
+                    tools:listitem="@layout/list_item_quote" />
             </android.support.v4.widget.SwipeRefreshLayout>
 
             <TextView

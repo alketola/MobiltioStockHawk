@@ -81,7 +81,8 @@
     <string name="content_desc_stock_graph">Stock value evolution by time graph.</string>
     <string name="list_of_stocks">list of stocks</string>
     <string name="no_chart_stock_not_selected">Chart is not available as no stock is selected.</string>
-    <string name="fragment_chart_data_not_found">ERROR. DATAA EI LÖYTYNYT.</string>
+    <string name="fragment_chart_data_not_found">ERROR. DATA NOT FOUND.</string>
     <string name="action_data_updated_key" translatable="false">com.udacity.stockhawk.ACTION_DATA_UPDATED</string>
+    <string name="yahoo_quote_not_available_key" translatable="false">N/A</string>
 
 </resources>

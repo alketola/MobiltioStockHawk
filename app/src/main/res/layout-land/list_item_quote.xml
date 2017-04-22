@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height_small_screen"
-    android:layout_margin="0dp"
+    android:layout_margin="@dimen/list_item_outer_margin"
     android:background="@color/ap_charcoal"
     android:elevation="4dp"
     android:gravity="start|left|center_vertical"

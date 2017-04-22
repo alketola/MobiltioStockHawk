@@ -42,12 +42,6 @@ public class StockHawkRemoteViewsService extends RemoteViewsService {
         percentageFormat.setMaximumFractionDigits(2);
         percentageFormat.setMinimumFractionDigits(2);
         percentageFormat.setPositivePrefix("+");
-        Timber.d("StockHawkRemoteViewsService() constructor finished");
-    }
-
-    public StockHawkRemoteViewsService(Context context, Intent intent) {
-        mContex = context;
-        Timber.d("StockHawkRemoteViewsService(context,intent=%s) constructor finished", intent.toString());
     }
 
     @Override

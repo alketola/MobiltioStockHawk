@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:layout_weight="1"
     android:gravity="center"
-    android:padding="@dimen/widget_padding"
+    android:padding="@dimen/widget_in_margin"
     android:layout_margin="@dimen/widget_margin"
     android:background="@color/ap_charcoal">
 

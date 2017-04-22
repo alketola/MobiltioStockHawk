@@ -8,10 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.Toast;
 
+import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
+import com.udacity.stockhawk.ui.MainActivity;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -81,12 +85,14 @@ public final class QuoteSyncJob {
                 try {
                     stock = quotes.get(symbol);
                     quote = stock.getQuote();
-
+                    if (stock.getName().equals(context.getString(R.string.yahoo_quote_not_available_key)))
+                        throw new EOFException(symbol);
                     price = quote.getPrice().floatValue();
                     change = quote.getChange().floatValue();
                     percentChange = quote.getChangeInPercent().floatValue();
-                } catch (NullPointerException e) {
-                    Timber.d(e, "Skipping unknown stock %s", stock);
+                } catch (Exception e) {
+                    PrefUtils.removeStock(context, symbol);
+                    Timber.d("Removed unknown stock %s ", symbol);
                     continue;
                 }
 
