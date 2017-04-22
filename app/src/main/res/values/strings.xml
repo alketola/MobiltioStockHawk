@@ -84,5 +84,6 @@
     <string name="fragment_chart_data_not_found">ERROR. DATA NOT FOUND.</string>
     <string name="action_data_updated_key" translatable="false">com.udacity.stockhawk.ACTION_DATA_UPDATED</string>
     <string name="yahoo_quote_not_available_key" translatable="false">N/A</string>
+    <string name="unknown_stock_removal_toast_message">Removed unknown stock %s</string>
 
 </resources>

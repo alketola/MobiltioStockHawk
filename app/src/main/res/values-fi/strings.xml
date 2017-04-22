@@ -60,5 +60,6 @@
     <string name="list_of_stocks">osakelista</string>
     <string name="no_chart_stock_not_selected">Kuvaajaa ei voi näyttää kun osaketta ei ole valittu.</string>
     <string name="fragment_chart_data_not_found">VIRHE. CHART DATA NOT FOUND</string>
+    <string name="unknown_stock_removal_toast_message">Tuntematon osakesymboli %s poistettiin</string>
 
 </resources>

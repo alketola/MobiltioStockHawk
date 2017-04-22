@@ -8,16 +8,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
-import com.udacity.stockhawk.ui.MainActivity;
 
 import java.io.EOFException;
 import java.io.IOException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -25,7 +25,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
 
 import timber.log.Timber;
 import yahoofinance.Stock;
@@ -92,7 +91,10 @@ public final class QuoteSyncJob {
                     percentChange = quote.getChangeInPercent().floatValue();
                 } catch (Exception e) {
                     PrefUtils.removeStock(context, symbol);
-                    Timber.d("Removed unknown stock %s ", symbol);
+                    String removalMessage = String.format(context.getString(R.string.unknown_stock_removal_toast_message), symbol);
+                    Timber.d(removalMessage);
+                    myToast(context, removalMessage);
+
                     continue;
                 }
 
@@ -191,5 +193,13 @@ public final class QuoteSyncJob {
         }
     }
 
+    public static void myToast(final Context context, final String text) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            public void run() {
+                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 }

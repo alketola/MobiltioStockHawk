@@ -60,5 +60,6 @@
     <string name="list_of_stocks">قائمة الأسهم</string>
     <string name="no_chart_stock_not_selected">الرسم البياني غير متوفر لأن رمز السهم غير محدد.</string>
     <string name="fragment_chart_data_not_found">خطأ. لم يتم العثور على بيانات المخطط</string>
+    <string name="unknown_stock_removal_toast_message">" %s تمت إزالة الأسهم غير المعروفة"</string>
 
 </resources>
