@@ -1,7 +1,9 @@
 package com.udacity.stockhawk.ui;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private int mDisplayHeight;
     private String mSymbol = "";
+    private NetworkReceiver mNetworkReceiver;
 
     @Override
     public void onClick(String symbol) {
@@ -69,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Registers BroadcastReceiver to track network connection changes.
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        mNetworkReceiver = new NetworkReceiver(this);
+        this.registerReceiver(mNetworkReceiver, filter);
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -107,15 +114,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    private boolean networkUp() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    protected void onDestroy() {
+        this.unregisterReceiver(mNetworkReceiver);
+        super.onDestroy();
     }
 
     @Override
@@ -123,15 +124,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         QuoteSyncJob.syncImmediately(this);
 
-        if (!networkUp() && adapter.getItemCount() == 0) {
+        if (!mNetworkReceiver.networkUp() && adapter.getItemCount() == 0) {
             swipeRefreshLayout.setRefreshing(false);
+            Toast.makeText(this, getString(R.string.error_no_network), Toast.LENGTH_LONG).show();
             error.setText(getString(R.string.error_no_network));
             error.setVisibility(View.VISIBLE);
-        } else if (!networkUp()) {
+        } else if (!mNetworkReceiver.networkUp()) {
             swipeRefreshLayout.setRefreshing(false);
             Toast.makeText(this, R.string.toast_no_connectivity, Toast.LENGTH_LONG).show();
         } else if (PrefUtils.getStocks(this).size() == 0) {
             swipeRefreshLayout.setRefreshing(false);
+            Toast.makeText(this, getString(R.string.error_no_stocks), Toast.LENGTH_LONG).show();
             error.setText(getString(R.string.error_no_stocks));
             error.setVisibility(View.VISIBLE);
             ifLandPutStockChart(mSymbol);
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     void addStock(String symbol) {
         if (symbol != null && !symbol.isEmpty()) {
 
-            if (networkUp()) {
+            if (mNetworkReceiver.networkUp()) {
                 swipeRefreshLayout.setRefreshing(true);
             } else {
                 String message = getString(R.string.toast_stock_added_no_connectivity, symbol);

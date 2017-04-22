@@ -61,5 +61,7 @@
     <string name="no_chart_stock_not_selected">Kuvaajaa ei voi näyttää kun osaketta ei ole valittu.</string>
     <string name="fragment_chart_data_not_found">VIRHE. CHART DATA NOT FOUND</string>
     <string name="unknown_stock_removal_toast_message">Tuntematon osakesymboli %s poistettiin</string>
+    <string name="network_receiver_up_again">Verkkoyhteys palasi, joten kurssit päivittyvät.</string>
+    <string name="network_receiver_network_went_down">Verkkoyhteys katkesi, joten kurssit eivät päivity.</string>
 
 </resources>

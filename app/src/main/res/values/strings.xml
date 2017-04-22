@@ -85,5 +85,7 @@
     <string name="action_data_updated_key" translatable="false">com.udacity.stockhawk.ACTION_DATA_UPDATED</string>
     <string name="yahoo_quote_not_available_key" translatable="false">N/A</string>
     <string name="unknown_stock_removal_toast_message">Removed unknown stock %s</string>
+    <string name="network_receiver_up_again">Network is up again so updating of quotes is possible.</string>
+    <string name="network_receiver_network_went_down">Network went down, so quotes are not updating</string>
 
 </resources>
