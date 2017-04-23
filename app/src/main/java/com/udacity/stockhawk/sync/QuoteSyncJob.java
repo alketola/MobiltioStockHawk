@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
+import com.udacity.stockhawk.ui.MainActivity;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -91,6 +92,7 @@ public final class QuoteSyncJob {
                     percentChange = quote.getChangeInPercent().floatValue();
                 } catch (Exception e) {
                     PrefUtils.removeStock(context, symbol);
+                    int count = context.getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
                     String removalMessage = String.format(context.getString(R.string.unknown_stock_removal_toast_message), symbol);
                     Timber.d(removalMessage);
                     myToast(context, removalMessage);

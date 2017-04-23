@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import timber.log.Timber;
+
 
 public class StockProvider extends ContentProvider {
 
@@ -125,7 +127,6 @@ public class StockProvider extends ContentProvider {
                         selection,
                         selectionArgs
                 );
-
                 break;
 
             case QUOTE_FOR_SYMBOL:
@@ -135,6 +136,7 @@ public class StockProvider extends ContentProvider {
                         '"' + symbol + '"' + " =" + Contract.Quote.COLUMN_SYMBOL,
                         selectionArgs
                 );
+                Timber.d("rowsDeleted:%d", rowsDeleted);
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown URI:" + uri);

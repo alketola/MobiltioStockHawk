@@ -34,6 +34,23 @@
 
                 <TextView
                     style="@style/StatTitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stock_name_title"
+                    tools:text="Name:" />
+
+                <TextView
+                    android:id="@+id/stats_name"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="GOOGA" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stats_currency" />

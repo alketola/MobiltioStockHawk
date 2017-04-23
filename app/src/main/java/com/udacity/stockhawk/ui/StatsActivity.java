@@ -35,7 +35,8 @@ public class StatsActivity extends AppCompatActivity {
     private Stock mStock = null;
     private StockDividend dividend = null;
     private StockStats stats = null;
-
+    @BindView(R.id.stats_name)
+    TextView tv_stock_name;
     @BindView(R.id.stats_currency)
     TextView tv_currency;
     @BindView(R.id.stats_ask_price)
@@ -170,7 +171,7 @@ public class StatsActivity extends AppCompatActivity {
                 showError(true);
                 return;
             }
-
+            tv_stock_name.setText(stock.getName());
             tv_currency.setText(stock.getCurrency());
             setStatString(quote.getAsk(), tv_ask_price);
             setStatString(quote.getBid(), tv_bid_price);

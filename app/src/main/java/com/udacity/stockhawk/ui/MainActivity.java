@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onDestroy() {
         this.unregisterReceiver(mNetworkReceiver);
+
         super.onDestroy();
     }
 

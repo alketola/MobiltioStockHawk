@@ -61,7 +61,8 @@
     <string name="no_chart_stock_not_selected">الرسم البياني غير متوفر لأن رمز السهم غير محدد.</string>
     <string name="fragment_chart_data_not_found">خطأ. لم يتم العثور على بيانات المخطط</string>
     <string name="unknown_stock_removal_toast_message">" %s تمت إزالة الأسهم غير المعروفة"</string>
-    <string name="network_receiver_up_again">الشبكة متروك مرة أخرى حتى تحديث ونقلت ممكن</string>
-    <string name="network_receiver_network_went_down">ذهبت الشبكة إلى أسفل، لذلك لا يتم تحديث ونقلت</string>
+    <string name="network_receiver_up_again">متصل، ونقلت التحديث.</string>
+    <string name="network_receiver_network_went_down">قطع الاتصال، لن يتم تحديث يقتبس.</string>
+    <string name="stock_name_title">Stock name</string>
 
 </resources>
