@@ -30,7 +30,7 @@
     <string name="content_desc_stock_symbol">رمز السهم</string>
     <string name="stats_ask_price_title_text">اسئل عن السعر</string>
     <string name="stats_bid_price_title_text">سعر</string>
-    <string name="stats_change_today">تغيير اليوم</string>
+    <string name="stats_change_today">التغيير، اليوم الأخير</string>
     <string name="stats_change_50d_percent">التغيير في متوسط 50 يوما</string>
     <string name="stats_change_200d_percent">التغيير في متوسط 200 يوم</string>
     <string name="stats_currency">دقة</string>
@@ -64,5 +64,6 @@
     <string name="network_receiver_up_again">متصل، ونقلت التحديث.</string>
     <string name="network_receiver_network_went_down">قطع الاتصال، لن يتم تحديث يقتبس.</string>
     <string name="stock_name_title">Stock name</string>
+    <string name="stock_last_trade_title">تاريخ التداول الأخير</string>
 
 </resources>

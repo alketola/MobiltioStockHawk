@@ -35,8 +35,11 @@ public class StatsActivity extends AppCompatActivity {
     private Stock mStock = null;
     private StockDividend dividend = null;
     private StockStats stats = null;
+
     @BindView(R.id.stats_name)
     TextView tv_stock_name;
+    @BindView(R.id.tv_last_trade_date)
+    TextView tv_last_trade_date;
     @BindView(R.id.stats_currency)
     TextView tv_currency;
     @BindView(R.id.stats_ask_price)
@@ -166,12 +169,15 @@ public class StatsActivity extends AppCompatActivity {
             StockDividend dividend = stock.getDividend();
             StockStats stats = stock.getStats();
             StockQuote quote = stock.getQuote();
+
             Timber.d("stats.toString = %s", stats.toString());
             if (stats == null) {
                 showError(true);
                 return;
             }
+
             tv_stock_name.setText(stock.getName());
+            tv_last_trade_date.setText(quote.getLastTradeDateStr());
             tv_currency.setText(stock.getCurrency());
             setStatString(quote.getAsk(), tv_ask_price);
             setStatString(quote.getBid(), tv_bid_price);

@@ -71,7 +71,7 @@ public final class QuoteSyncJob {
 
             Iterator<String> iterator = stockCopy.iterator();
 
-            Timber.d(quotes.toString());
+            Timber.d("QuoteSyncJobQuotes:" + quotes.toString());
 
             ArrayList<ContentValues> quoteCVs = new ArrayList<>();
 
@@ -90,9 +90,9 @@ public final class QuoteSyncJob {
                     price = quote.getPrice().floatValue();
                     change = quote.getChange().floatValue();
                     percentChange = quote.getChangeInPercent().floatValue();
-                } catch (Exception e) {
-                    PrefUtils.removeStock(context, symbol);
+                } catch (NullPointerException | EOFException e) {
                     int count = context.getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
+                    PrefUtils.removeStock(context, symbol);
                     String removalMessage = String.format(context.getString(R.string.unknown_stock_removal_toast_message), symbol);
                     Timber.d(removalMessage);
                     myToast(context, removalMessage);
@@ -104,11 +104,7 @@ public final class QuoteSyncJob {
                 // The request will hang forever X_x
 
                 List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);// TODO DAILY
-                if (history != null) {
-                    Timber.d("HISTORY = %s", history);
-                } else {
-                    Timber.d("HISTORY = NULL");
-                }
+
                 StringBuilder historyBuilder = new StringBuilder();
 
                 for (HistoricalQuote it : history) {
@@ -124,7 +120,6 @@ public final class QuoteSyncJob {
                 quoteCV.put(Contract.Quote.COLUMN_PRICE, price);
                 quoteCV.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
                 quoteCV.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
-
 
                 quoteCV.put(Contract.Quote.COLUMN_HISTORY, historyBuilder.toString());
 

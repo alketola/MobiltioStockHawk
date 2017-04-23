@@ -55,7 +55,7 @@
     <string name="stat_title_bvps" translatable="false">BVPS</string>
     <string name="stats_ask_price_title_text">Ask price</string>
     <string name="stats_bid_price_title_text">Bid price</string>
-    <string name="stats_change_today">Change today</string>
+    <string name="stats_change_today">Change, last day</string>
     <string name="stats_change_50d_percent">Change in 50 days average</string>
     <string name="stats_change_200d_percent">Change in 200 days average</string>
     <string name="stats_currency">Currency</string>
@@ -88,5 +88,6 @@
     <string name="network_receiver_up_again">Connected, quotes will update.</string>
     <string name="network_receiver_network_went_down">Disconnected, quotes will not update.</string>
     <string name="stock_name_title">Stock name</string>
+    <string name="stock_last_trade_title">Last trade date</string>
 
 </resources>

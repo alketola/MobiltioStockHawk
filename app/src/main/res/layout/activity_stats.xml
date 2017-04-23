@@ -29,7 +29,7 @@
             android:padding="@dimen/activity_horizontal_margin"
             android:visibility="invisible"
             tools:context="com.udacity.stockhawk.ui.StatsActivity">
-
+            tv_last_trade_date
             <LinearLayout style="@style/StatLine">
 
                 <TextView
@@ -47,6 +47,22 @@
                     tools:text="GOOGA" />
             </LinearLayout>
 
+            <LinearLayout style="@style/StatLine">
+
+                <TextView
+                    style="@style/StatTitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stock_last_trade_title"
+                    tools:text="Name:" />
+
+                <TextView
+                    android:id="@+id/tv_last_trade_date"
+                    style="@style/StatValueStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="12.12.2112" />
+            </LinearLayout>
             <LinearLayout style="@style/StatLine">
 
                 <TextView

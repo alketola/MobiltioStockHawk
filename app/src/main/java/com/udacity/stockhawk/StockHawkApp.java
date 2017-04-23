@@ -17,7 +17,8 @@ public class StockHawkApp extends Application {
             Timber.uprootAll();
             Timber.plant(new Timber.DebugTree());
         } else {
-            YahooFinance.logger.setLevel(Level.SEVERE);
+
         }
+        YahooFinance.logger.setLevel(Level.OFF);
     }
 }
