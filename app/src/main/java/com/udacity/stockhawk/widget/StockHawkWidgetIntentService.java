@@ -79,6 +79,7 @@ public class StockHawkWidgetIntentService extends IntentService {
         views.setPendingIntentTemplate(R.id.lv_widget_stock_list, clickPendingIntentTemplate);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.lv_widget_stock_list);
     }
 
     /**
