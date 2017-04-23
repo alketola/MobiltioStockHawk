@@ -33,7 +33,7 @@
 
     <RelativeLayout
         android:id="@+id/widget_change_frame"
-        android:layout_width="@dimen/widget_change_width"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="0dp"
@@ -50,9 +50,9 @@
             android:layout_alignBottom="@+id/tv_widget_change"
             android:layout_alignTop="@+id/tv_widget_change"
             android:layout_centerVertical="true"
-            android:padding="0dp"
             android:layout_margin="@dimen/widget_margin"
-            android:cropToPadding="true" />
+            android:cropToPadding="true"
+            android:padding="0dp" />
 
         <TextView
             android:id="@+id/tv_widget_change"

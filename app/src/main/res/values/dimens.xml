@@ -13,9 +13,9 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="widget_in_margin">4dp</dimen>
 
-    <dimen name="widget_symbol_width">60dp</dimen>
-    <dimen name="widget_price_width">60dp</dimen>
-    <dimen name="widget_change_width">60dp</dimen>
+    <dimen name="widget_symbol_width">68dp</dimen>
+    <dimen name="widget_price_width">64dp</dimen>
+    <dimen name="widget_change_width">68dp</dimen>
 
     <dimen name="widget_default_width">110dp</dimen>
     <dimen name="widget_default_heigth">40dp</dimen>
