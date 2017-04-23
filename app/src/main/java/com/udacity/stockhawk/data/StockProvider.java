@@ -136,7 +136,6 @@ public class StockProvider extends ContentProvider {
                         '"' + symbol + '"' + " =" + Contract.Quote.COLUMN_SYMBOL,
                         selectionArgs
                 );
-                Timber.d("rowsDeleted:%d", rowsDeleted);
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown URI:" + uri);

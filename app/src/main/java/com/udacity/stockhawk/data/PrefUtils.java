@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import timber.log.Timber;
+
 public final class PrefUtils {
 
     private PrefUtils() {
@@ -37,8 +39,26 @@ public final class PrefUtils {
 
     }
 
-    private static void editStockPref(Context context, String symbol, Boolean add) {
-        String key = context.getString(R.string.pref_stocks_key);
+    /* Rewritten this because it didn't originally work correctly.
+     * putStringSet has the bug that it doesn't replace the Set<String>, but leaves it intact
+     * if there's one with the same key!
+     *
+     * Prefs must be read, clear()ed and built and put up again.
+     */
+    private static synchronized void editStockPref(Context context, String symbol, Boolean add) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String initializedKey = context.getString(R.string.pref_stocks_initialized_key);
+        boolean initialized = prefs.getBoolean(initializedKey, false);
+
+        String displayMode = getDisplayMode(context);
+        String displayModeKey = context.getString(R.string.pref_display_mode_key);
+        String stocksKey = context.getString(R.string.pref_stocks_key);
+
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.putBoolean(initializedKey, initialized);
+        editor.putString(displayModeKey, displayMode);
+
         Set<String> stocks = getStocks(context);
 
         if (add) {
@@ -47,10 +67,8 @@ public final class PrefUtils {
             stocks.remove(symbol);
         }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putStringSet(key, stocks);
-        editor.apply();
+        editor.putStringSet(stocksKey, stocks);
+        editor.commit(); //.apply();
     }
 
     public static void addStock(Context context, String symbol) {
@@ -58,6 +76,7 @@ public final class PrefUtils {
     }
 
     public static void removeStock(Context context, String symbol) {
+        Timber.d("removeStock(context=%s, symbol=%s", context.toString(), symbol);
         editStockPref(context, symbol, false);
     }
 
@@ -85,7 +104,7 @@ public final class PrefUtils {
             editor.putString(key, absoluteKey);
         }
 
-        editor.apply();
+        editor.commit(); //.apply();
     }
 
 }

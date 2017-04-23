@@ -1,5 +1,6 @@
 package com.udacity.stockhawk.ui;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 String symbol = adapter.getSymbolAtPosition(viewHolder.getAdapterPosition());
-                PrefUtils.removeStock(MainActivity.this, symbol);
+                PrefUtils.removeStock(getApplicationContext(), symbol);
                 getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
             }
         }).attachToRecyclerView(stockRecyclerView);
@@ -154,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             if (mNetworkReceiver.networkUp()) {
                 swipeRefreshLayout.setRefreshing(true);
             } else {
+                @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
                 String message = getString(R.string.toast_stock_added_no_connectivity, symbol);
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
@@ -196,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         int count = data.getCount();
         if (count > 0) {
             mSymbol = data.getString(Contract.Quote.POSITION_SYMBOL);
-            Timber.d("Load finished. mSymbol=%s", mSymbol);
+            Timber.d("Load finished. default symbol=%s", mSymbol);
             adapter.setCursor(data);
             new ChartChangeTask().execute(); //execute ifLandPutStockChart(mSymbol); on thread
         } else {

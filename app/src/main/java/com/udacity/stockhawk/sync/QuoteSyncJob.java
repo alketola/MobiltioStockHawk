@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
@@ -15,7 +16,6 @@ import android.widget.Toast;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
-import com.udacity.stockhawk.ui.MainActivity;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -47,6 +47,7 @@ public final class QuoteSyncJob {
     private QuoteSyncJob() {
     }
 
+
     static void getQuotes(Context context) {
 
         Timber.d("Running sync job");
@@ -62,7 +63,7 @@ public final class QuoteSyncJob {
             stockCopy.addAll(stockPref);
             String[] stockArray = stockPref.toArray(new String[stockPref.size()]);
 
-            Timber.d(stockCopy.toString());
+            Timber.d("stockArray=%s", stockCopy.toString());
 
             if (stockArray.length == 0) {
                 return;
@@ -90,40 +91,36 @@ public final class QuoteSyncJob {
                     price = quote.getPrice().floatValue();
                     change = quote.getChange().floatValue();
                     percentChange = quote.getChangeInPercent().floatValue();
+
+                    // WARNING! Don't request historical data for a stock that doesn't exist!
+                    // The request will hang forever X_x
+
+                    List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);// TODO DAILY
+
+                    StringBuilder historyBuilder = new StringBuilder();
+
+                    for (HistoricalQuote it : history) {
+                        //Timber.d("history = %s", it.toString());
+                        historyBuilder.append(it.getDate().getTimeInMillis());
+                        historyBuilder.append(", ");
+                        historyBuilder.append(it.getClose());
+                        historyBuilder.append("\n");
+                    }
+
+                    ContentValues quoteCV = new ContentValues();
+                    quoteCV.put(Contract.Quote.COLUMN_SYMBOL, symbol);
+                    quoteCV.put(Contract.Quote.COLUMN_PRICE, price);
+                    quoteCV.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
+                    quoteCV.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
+
+                    quoteCV.put(Contract.Quote.COLUMN_HISTORY, historyBuilder.toString());
+
+                    quoteCVs.add(quoteCV);
                 } catch (NullPointerException | EOFException e) {
-                    int count = context.getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
-                    PrefUtils.removeStock(context, symbol);
-                    String removalMessage = String.format(context.getString(R.string.unknown_stock_removal_toast_message), symbol);
-                    Timber.d(removalMessage);
-                    myToast(context, removalMessage);
 
-                    continue;
+                    unknownQuoteDelete(context, symbol);
+
                 }
-
-                // WARNING! Don't request historical data for a stock that doesn't exist!
-                // The request will hang forever X_x
-
-                List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);// TODO DAILY
-
-                StringBuilder historyBuilder = new StringBuilder();
-
-                for (HistoricalQuote it : history) {
-                    //Timber.d("history = %s", it.toString());
-                    historyBuilder.append(it.getDate().getTimeInMillis());
-                    historyBuilder.append(", ");
-                    historyBuilder.append(it.getClose());
-                    historyBuilder.append("\n");
-                }
-
-                ContentValues quoteCV = new ContentValues();
-                quoteCV.put(Contract.Quote.COLUMN_SYMBOL, symbol);
-                quoteCV.put(Contract.Quote.COLUMN_PRICE, price);
-                quoteCV.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
-                quoteCV.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
-
-                quoteCV.put(Contract.Quote.COLUMN_HISTORY, historyBuilder.toString());
-
-                quoteCVs.add(quoteCV);
 
             }
 
@@ -188,13 +185,24 @@ public final class QuoteSyncJob {
     }
 
     // Local toast method to throw it to the MainActivity
-    public static void myToast(final Context context, final String text) {
+    public static void toastOnTheRun(final Context context, final String text) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             public void run() {
                 Toast.makeText(context, text, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public static void unknownQuoteDelete(Context context, String symbol) {
+
+        Uri deletionUri = Contract.Quote.makeUriForStock(symbol);
+        PrefUtils.removeStock(context, symbol);
+        context.getApplicationContext().getContentResolver().delete(deletionUri, null, null);
+        String removalMessage = String.format(context.getString(R.string.unknown_stock_removal_toast_message), symbol);
+        Timber.d(removalMessage);
+        toastOnTheRun(context, removalMessage);
+
     }
 
 }
