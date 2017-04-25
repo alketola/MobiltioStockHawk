@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         mNetworkReceiver = new NetworkReceiver(this);
         this.registerReceiver(mNetworkReceiver, filter);
-
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -121,9 +120,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mNetworkReceiver.setEnabled(true);
+    }
+
+    @Override
+    protected void onPause() {
+        mNetworkReceiver.setEnabled(false);
+        super.onPause();
+    }
+
+    @Override
     protected void onDestroy() {
         this.unregisterReceiver(mNetworkReceiver);
-
         super.onDestroy();
     }
 

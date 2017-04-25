@@ -16,21 +16,33 @@ import timber.log.Timber;
  */
 
 public class NetworkReceiver extends BroadcastReceiver {
-    Context mContext;
+    private Context mContext;
+    private boolean enabled;
 
     public NetworkReceiver(Context context) {
+
         mContext = context;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Timber.d("NetworkReceiver onReceive");
-        if (networkUp()) {
-            Timber.d("Network Up");
-            Toast.makeText(mContext, R.string.network_receiver_up_again, Toast.LENGTH_LONG).show();
-        } else {
-            Timber.d("Network Down");
-            Toast.makeText(mContext, R.string.network_receiver_network_went_down, Toast.LENGTH_LONG).show();
+        if (this.isEnabled()) {
+            if (networkUp()) {
+                Timber.d("Network Up");
+                Toast.makeText(mContext, R.string.network_receiver_up_again, Toast.LENGTH_LONG).show();
+            } else {
+                Timber.d("Network Down");
+                Toast.makeText(mContext, R.string.network_receiver_network_went_down, Toast.LENGTH_LONG).show();
+            }
         }
     }
 

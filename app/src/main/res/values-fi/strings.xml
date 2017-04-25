@@ -5,7 +5,7 @@
     <string name="dialog_title">Lisää osake</string>
     <string name="dialog_hint">Osakkeen symboli (e.g. GOOG)</string>
     <string name="dialog_cancel">Peru</string>
-    <string name="dialog_add" translatable="false">Lisää</string>
+    <string name="dialog_add">Lisää</string>
 
     <string name="error_no_network">Ei verkkoyhteyttä! Osaketiedot ladataan kun yhteys palautuu.</string>
     <string name="error_no_stocks">Ei yhtään osaketta listalla! Paina kelluvaa toimintonappulaa lisätäksesi.</string>
